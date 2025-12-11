@@ -8,8 +8,7 @@
     <meta name="apple-mobile-web-app-title" content="Bütçem">
     <title>Çeliktaş Finans</title>
     
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%23ffffff'/%3E%3Cpath fill='%231F5C33' d='M386.5 201.3c-11.2-8.9-28.7-3.9-34.9 9.4-3.9 8.5-2.3 18.6 4.2 25.6 34.1 36.2 38.7 92.5 6.4 133.1-2.4 3.1-5.2 6-8 8.8-22 22-53 33.3-84.2 31.3-6.4-.3-12.7-1.3-18.9-2.9-7.8-2.1-15.5 4.7-14.7 12.9.7 7.5 7 13.2 14.5 13.2h1.5c39.5 1.1 78-13.5 106.2-41.8 4.9-4.9 9.5-10 13.7-15.3 42.8-54.2 36.4-129.2-9.3-176.4zM126.7 232.6c10.3 40.6 37.4 76 73.6 97.4 7.5 4.4 17.3 2.1 22-5.2 4.9-7.3 2.9-17.1-4.2-22-28.2-19.2-48.5-49.9-54.7-86-1.6-9.3-10.8-15.3-20.1-13.4-9.3 1.8-15.3 10.8-13.4 20.1zm104.3-53.2c-37.6-41.8-93.5-64.8-151.6-59.7-8.8.8-15.3 8.6-14.5 17.5.8 8.8 8.6 15.3 17.5 14.5 48.3-4.2 94.8 14.8 126 49.6 6 6.7 16.3 7.2 23 1.1 6.7-6 7.2-16.3 1.1-23zM256 48C149.9 48 63.9 134 63.9 240c0 40.4 12.3 78.1 33.6 109.2-26.9 35.5-43.5 79.3-43.5 127.3 0 19.9 16.1 36 36 36h29.3c17.7 0 32.6-12.8 35.4-30.3l5.8-34.2c2.6-15.3 15.9-26.5 31.4-26.5s28.8 11.2 31.4 26.5l5.8 34.2c2.8 17.5 17.7 30.3 35.4 30.3h29.3c19.9 0 36-16.1 36-36 0-48-16.6-91.8-43.5-127.3C371.8 318.1 384.1 280.4 384.1 240 384.1 134 298.1 48 256 48zm0 336c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48z'/%3E%3C/svg%3E">
-
+    <link rel="icon" type="image/png" href="logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -216,7 +215,7 @@
         <div class="modal-content border-0">
             <div class="modal-header bg-primary text-white" style="background-color: #5d6d7e !important;"><h5 class="modal-title fw-bold">Faturalar & Talimatlar</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
             <div class="modal-body">
-                <div class="alert alert-light small border mb-2"><i class="fas fa-info-circle text-primary"></i> Bu ayki fatura ve sabit ödemeleriniz.</div>
+                <div class="alert alert-light small border mb-2"><i class="fas fa-info-circle text-primary"></i> Faturalarınızı buradan planlayın.</div>
                 <div id="faturaListesi"></div>
             </div>
         </div>
@@ -266,7 +265,8 @@
     <input type="hidden" id="isSabitHidden" value="false">
     <div class="d-flex gap-2 mb-3"><input type="radio" class="btn-check" name="tur" id="radioGider" value="gider" checked onchange="formuDuzenle()"><label class="btn btn-outline-danger flex-grow-1" for="radioGider">Gider</label><input type="radio" class="btn-check" name="tur" id="radioGelir" value="gelir" onchange="formuDuzenle()"><label class="btn btn-outline-success flex-grow-1" for="radioGelir">Gelir</label></div><div class="mb-3 bg-opacity-10 p-2 rounded border" id="odemeKutusu" style="background-color:rgba(13,110,253,0.05);"><label class="form-label fw-bold text-muted mb-1 small">Ödeme</label><select class="form-select fw-bold text-primary" id="odemeYontemi" onchange="taksitKontrol()"><option value="nakit">💵 Nakit / Banka</option></select><div id="tarihUyari" class="form-text text-warning d-none">Gelecek aya kaydedilecek!</div></div>
 <div class="form-check form-switch mb-2" id="taksitSwitchContainer" style="display:none;"><input class="form-check-input" type="checkbox" id="taksitSwitch" onchange="taksitAyarla()"><label class="form-check-label" for="taksitSwitch">Taksitli İşlem</label></div>
-<div class="mb-3 p-2 rounded border border-warning" id="taksitDiv" style="display:none;background-color:rgba(255,193,7,0.1);"><label class="small fw-bold">Taksit</label><div class="input-group mt-1"><button type="button" class="btn btn-outline-secondary" onclick="taksitDegis(-1)">-</button><input type="number" class="form-control text-center fw-bold" id="taksitSayisi" value="1" min="1" max="12" readonly><button type="button" class="btn btn-outline-secondary" onclick="taksitDegis(1)">+</button></div><div class="text-center mt-1"><small class="text-danger fw-bold" id="taksitBilgi"></small></div></div><div class="row g-2 mb-3"><div class="col-7"><label class="small text-muted">Kategori</label><select class="form-select" id="kategori"></select></div><div class="col-5"><label class="small text-muted">Tutar</label><input type="number" inputmode="decimal" class="form-control" id="tutar" placeholder="0" step="0.01" required oninput="taksitBilgiGuncelle()"></div></div><div class="mb-3"><input type="text" class="form-control" id="aciklama" placeholder="Açıklama"></div><div class="mb-4"><label class="small text-muted mb-1">Tarih</label><div class="input-group"><button type="button" class="btn btn-outline-secondary" onclick="tarihAyarla(-1)">Dün</button><button type="button" class="btn btn-outline-secondary" onclick="tarihAyarla(0)">Bugün</button><input type="date" class="form-control" id="tarih" required></div></div><button type="submit" class="btn btn-primary w-100 py-3 rounded-3 fw-bold shadow">KAYDET</button></form></div></div></div></div>
+<div class="mb-3 p-2 rounded border border-warning" id="taksitDiv" style="display:none;background-color:rgba(255,193,7,0.1);"><label class="small fw-bold">Taksit</label><div class="input-group mt-1"><button type="button" class="btn btn-outline-secondary" onclick="taksitDegis(-1)">-</button><input type="number" class="form-control text-center fw-bold" id="taksitSayisi" value="1" min="1" max="12" readonly><button type="button" class="btn btn-outline-secondary" onclick="taksitDegis(1)">+</button></div><div class="text-center mt-1"><small class="text-danger fw-bold" id="taksitBilgi"></small></div></div><div class="row g-2 mb-3"><div class="col-7"><label class="small text-muted">Kategori</label><select class="form-select" id="kategori"></select></div><div class="col-5"><label class="small text-muted">Tutar</label><input type="number" inputmode="decimal" class="form-control" id="tutar" placeholder="0" step="0.01" required oninput="taksitBilgiGuncelle()"></div></div><div class="mb-3"><input type="text" class="form-control" id="aciklama" placeholder="Açıklama"></div><div class="mb-4"><label class="small text-muted mb-1">Tarih</label><div class="input-group"><button type="button" class="btn btn-outline-secondary" onclick="tarihAyarla(-1)">Dün</button><button type="button" class="btn btn-outline-secondary" onclick="tarihAyarla(0)">Bugün</button><input type="date" class="form-control" id="tarih" required></div></div>
+<button type="submit" class="btn btn-primary w-100 py-3 rounded-3 fw-bold shadow" id="btnIslemKaydet">KAYDET</button></form></div></div></div></div>
 <div class="modal fade" id="kartModal" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content border-0"><div class="modal-header"><h5 class="modal-title">Kartlar</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><form id="kartEkleForm" class="mb-4"><div class="mb-3"><div class="btn-group w-100"><input type="radio" class="btn-check" name="kartTipi" id="tipKredi" value="kredi" checked onchange="kartTipiDegis()"><label class="btn btn-outline-primary" for="tipKredi">Kredi Kartı</label><input type="radio" class="btn-check" name="kartTipi" id="tipBanka" value="banka" onchange="kartTipiDegis()"><label class="btn btn-outline-secondary" for="tipBanka">Banka Kartı</label></div></div><div class="row g-2 align-items-end"><div class="col-7"><input type="text" class="form-control" id="kartAdi" placeholder="Kart Adı" required></div><div class="col-3" id="kesimInputDiv"><input type="number" class="form-control" id="kesimGunu" placeholder="Kesim"></div><div class="col-2"><button type="submit" class="btn btn-success w-100">+</button></div></div></form><div class="list-group list-group-flush" id="kartListesi"></div><hr><div class="d-grid"><button class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#sabitlerModal">Otomatik İşlemler</button></div></div></div></div></div>
 
 <div class="modal fade" id="sabitlerModal" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content border-0"><div class="modal-header"><h5 class="modal-title">Talimatlar</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body">
@@ -336,6 +336,7 @@
     let gecmisCache = [];
     let sabitlerCache = [];
     let limitlerCache = {};
+    let bekleyenlerCache = []; // YENİ
     let grafikInstance = null; 
     let seciliFiltre = 'Tümü';
     let suankiSayfa = 1;
@@ -346,6 +347,7 @@
     let gelirGoster = false;
     let duzenlenecekId = null; 
     let analizModu = 'kategori'; 
+    let isPlanlamaModu = false; // YENİ
 
     const kategoriIkonlari = { "Market": "fa-shopping-basket", "Akaryakıt": "fa-gas-pump", "Fatura": "fa-file-invoice-dollar", "Yeme-İçme": "fa-utensils", "Giyim": "fa-tshirt", "Elektronik": "fa-laptop", "Ev": "fa-home", "Eğlence": "fa-gamepad", "Sağlık": "fa-heartbeat", "Diğer": "fa-ellipsis-h", "Maaş": "fa-money-bill-wave", "Prim": "fa-star", "Satış": "fa-tag", "Borç Alacak": "fa-hand-holding-usd" };
     const giderKats = ["Market", "Akaryakıt", "Fatura", "Yeme-İçme", "Giyim", "Elektronik", "Ev", "Eğlence", "Sağlık", "Diğer"];
@@ -363,8 +365,7 @@
             limitleriGetir();
             sabitleriDinle();
             verileriDinle();
-            // Otomatik kontrolü biraz geciktir ki veriler gelsin
-            setTimeout(otomatikKontrol, 2500); 
+            bekleyenleriDinle(); // YENİ
         } catch(e) {
             console.error(e);
             alert("Başlangıç hatası: " + e.message);
@@ -381,762 +382,64 @@
         const s = document.getElementById('sabitGun'); 
         for(let i=1;i<=31;i++) s.innerHTML+=`<option value="${i}">Her ayın ${i}. günü</option>`; 
     }
-
-    async function gecmisYonetimAc() {
-        bootstrap.Modal.getInstance(document.getElementById('digerMenuModal'))?.hide();
-        const modal = new bootstrap.Modal(document.getElementById('gecmisYonetimModal'));
-        const div = document.getElementById('gecmisListesi');
-        
-        modal.show();
-        div.innerHTML = "<div class='text-center py-4'><div class='spinner-border text-warning'></div><div class='mt-2'>Veriler yükleniyor...</div></div>";
-
-        try {
-            const snapshot = await db.collection("islemler")
-                                     .orderBy("olusturulma", "desc")
-                                     .limit(100)
-                                     .get();
-            
-            div.innerHTML = "";
-            gecmisCache = [];
-
-            if (snapshot.empty) {
-                div.innerHTML = "<div class='text-center p-4 text-muted'>Kayıt bulunamadı.</div>";
-                return;
-            }
-
-            snapshot.forEach(doc => {
-                const d = doc.data();
-                d.id = doc.id;
-                gecmisCache.push(d);
-
-                let tarihStr = "-";
-                if(d.tarih && d.tarih.toDate) {
-                    tarihStr = d.tarih.toDate().toLocaleDateString('tr-TR', {day: 'numeric', month: 'long', year:'numeric'});
-                }
-                const renk = d.tur === 'gelir' ? 'text-success' : 'text-danger';
-                const isaret = d.tur === 'gelir' ? '+' : '-';
-                const ikon = kategoriIkonlari[d.kategori] || 'fa-circle';
-
-                const html = `
-                <div class="list-group-item list-group-item-action p-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="d-flex align-items-center">
-                            <div class="me-3 fs-4 text-secondary" style="width:40px; text-align:center;">
-                                <i class="fas ${ikon}"></i>
-                            </div>
-                            <div>
-                                <div class="fw-bold">${d.kategori}</div>
-                                <div class="small text-muted">${d.aciklama || 'Açıklama yok'}</div>
-                                <div class="badge bg-light text-dark border mt-1 fw-normal">
-                                    <i class="far fa-calendar-alt me-1"></i>${tarihStr}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-end">
-                            <div class="fs-5 fw-bold ${renk} mb-2">${isaret}${d.tutar} ₺</div>
-                            <div class="btn-group">
-                                <button class="btn btn-sm btn-outline-primary" onclick="gecmisDuzenle('${d.id}')">
-                                    <i class="fas fa-pen"></i>
-                                </button>
-                                <button class="btn btn-sm btn-outline-danger" onclick="gecmisSil('${d.id}')">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
-                div.innerHTML += html;
-            });
-
-        } catch (error) {
-            console.error(error);
-            div.innerHTML = "<div class='text-center p-4 text-danger'>Veriler yüklenirken hata oluştu: " + error.message + "</div>";
-        }
-    }
-
-    function gecmisDuzenle(id) {
-        const veri = gecmisCache.find(x => x.id === id);
-        if (!veri) return;
-
-        duzenlenecekId = id;
-        bootstrap.Modal.getInstance(document.getElementById('gecmisYonetimModal')).hide();
-        const modal = new bootstrap.Modal(document.getElementById('duzenleModal'));
-        
-        if (veri.tur === 'gider') {
-            document.getElementById('editRadioGider').checked = true;
-        } else {
-            document.getElementById('editRadioGelir').checked = true;
-        }
-        
-        editFormuDuzenle();
-
-        document.getElementById('editKategori').value = veri.kategori;
-        document.getElementById('editTutar').value = veri.tutar;
-        document.getElementById('editAciklama').value = veri.aciklama || '';
-        document.getElementById('editOdemeYontemi').value = veri.odemeYontemi || 'nakit';
-        
-        if(veri.tarih && veri.tarih.toDate) {
-            const date = veri.tarih.toDate();
-            const yyyy = date.getFullYear();
-            const mm = String(date.getMonth() + 1).padStart(2, '0');
-            const dd = String(date.getDate()).padStart(2, '0');
-            document.getElementById('editTarih').value = `${yyyy}-${mm}-${dd}`;
-        }
-        
-        modal.show();
-    }
-
-    function gecmisSil(id) {
-        if(confirm("Bu işlem kalıcı olarak silinecek. Emin misin?")) {
-            db.collection("islemler").doc(id).delete().then(() => {
-                gecmisYonetimAc();
-                toastGoster("Kayıt silindi.");
-            }).catch(err => alert("Hata: " + err));
-        }
-    }
-
-    function duzenleAc(id) {
-        duzenlenecekId = id;
-        const veri = hamVeriler.find(x => x.id === id);
-        if (!veri) return;
-
-        const modal = new bootstrap.Modal(document.getElementById('duzenleModal'));
-        
-        if (veri.tur === 'gider') {
-            document.getElementById('editRadioGider').checked = true;
-        } else {
-            document.getElementById('editRadioGelir').checked = true;
-        }
-        
-        editFormuDuzenle();
-
-        document.getElementById('editKategori').value = veri.kategori;
-        document.getElementById('editTutar').value = veri.tutar;
-        document.getElementById('editAciklama').value = veri.aciklama || '';
-        document.getElementById('editOdemeYontemi').value = veri.odemeYontemi || 'nakit';
-        
-        if(veri.tarih && veri.tarih.toDate) {
-            const date = veri.tarih.toDate();
-            const yyyy = date.getFullYear();
-            const mm = String(date.getMonth() + 1).padStart(2, '0');
-            const dd = String(date.getDate()).padStart(2, '0');
-            document.getElementById('editTarih').value = `${yyyy}-${mm}-${dd}`;
-        }
-        
-        modal.show();
-    }
-
-    function editFormuDuzenle() {
-        const t = document.querySelector('input[name="editTur"]:checked').value;
-        const s = document.getElementById('editKategori');
-        s.innerHTML = "";
-        (t === 'gider' ? giderKats : gelirKats).forEach(k => s.innerHTML += `<option value="${k}">${k}</option>`);
-        
-        if (t === 'gelir') {
-            document.getElementById('editOdemeKutusu').style.display = 'none';
-            document.getElementById('editOdemeYontemi').value = 'nakit';
-        } else {
-            document.getElementById('editOdemeKutusu').style.display = 'block';
-        }
-        
-        const sel = document.getElementById('editOdemeYontemi');
-        const mevcutSecim = sel.value;
-        sel.innerHTML = '<option value="nakit">💵 Nakit / Banka Hesabı</option>';
-        kartlarCache.forEach(k => {
-            let o = document.createElement('option');
-            o.value = k.id;
-            o.text = `${k.tip === 'banka' ? '🏧' : '💳'} ${k.ad}`;
-            sel.appendChild(o);
-        });
-        sel.value = mevcutSecim;
-    }
-
-    document.getElementById('duzenleFormu').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        if (!duzenlenecekId) return;
-
-        const tur = document.querySelector('input[name="editTur"]:checked').value;
-        const tutar = parseFloat(document.getElementById('editTutar').value);
-        const kategori = document.getElementById('editKategori').value;
-        const aciklama = document.getElementById('editAciklama').value;
-        const odemeYontemi = document.getElementById('editOdemeYontemi').value;
-        const tarihVal = document.getElementById('editTarih').value;
-
-        try {
-            await db.collection("islemler").doc(duzenlenecekId).update({
-                tur: tur,
-                tutar: tutar,
-                kategori: kategori,
-                aciklama: aciklama,
-                odemeYontemi: odemeYontemi,
-                tarih: firebase.firestore.Timestamp.fromDate(new Date(tarihVal))
-            });
-            
-            bootstrap.Modal.getInstance(document.getElementById('duzenleModal')).hide();
-            toastGoster("İşlem güncellendi!");
-        } catch (error) {
-            console.error("Güncelleme hatası:", error);
-            alert("Güncelleme sırasında bir hata oluştu.");
-        }
-    });
-
-    async function taksitModalAc() {
-        bootstrap.Modal.getInstance(document.getElementById('digerMenuModal'))?.hide();
-        
-        const modal = new bootstrap.Modal(document.getElementById('taksitModal'));
-        const listDiv = document.getElementById('taksitListesi');
-        
-        listDiv.innerHTML = "<div class='text-center py-4'><div class='spinner-border text-success'></div><div class='mt-2 small text-muted'>Veriler yükleniyor...</div></div>";
-        modal.show();
-
-        try {
-            const bugun = new Date(); 
-            bugun.setHours(0,0,0,0); 
-
-            const snapshot = await db.collection("islemler")
-                                     .where("tur", "==", "gider")
-                                     .where("tarih", ">=", firebase.firestore.Timestamp.fromDate(bugun))
-                                     .get();
-
-            const taksitGruplari = {};
-            
-            snapshot.forEach(doc => {
-                const d = doc.data();
-                const match = d.aciklama && d.aciklama.match(/(.*)\s\((\d+)\/(\d+)\)/);
-                
-                if (match) {
-                    const anaIsim = match[1].trim(); 
-                    const mevcutTaksitNo = parseInt(match[2]);
-                    const toplamTaksit = parseInt(match[3]);
-
-                    if (!taksitGruplari[anaIsim]) { 
-                        taksitGruplari[anaIsim] = { 
-                            isim: anaIsim, 
-                            toplamTaksit: toplamTaksit, 
-                            kalanTaksitSayisi: 0, 
-                            kalanTutar: 0, 
-                            sonTarih: d.tarih.toDate() 
-                        }; 
-                    }
-                    taksitGruplari[anaIsim].kalanTaksitSayisi++; 
-                    taksitGruplari[anaIsim].kalanTutar += d.tutar;
-                    const tarih = d.tarih.toDate(); 
-                    if (tarih > taksitGruplari[anaIsim].sonTarih) taksitGruplari[anaIsim].sonTarih = tarih;
-                }
-            });
-
-            listDiv.innerHTML = "";
-            if (Object.keys(taksitGruplari).length === 0) { 
-                listDiv.innerHTML = "<div class='text-center text-muted p-3'><i class='fas fa-check-circle fa-2x mb-2 text-success opacity-50'></i><br>Gelecek taksitiniz bulunmuyor.</div>"; 
-            } else {
-                Object.values(taksitGruplari).forEach(grup => {
-                    const odenenTaksitSayisi = grup.toplamTaksit - grup.kalanTaksitSayisi; 
-                    const bitisAy = grup.sonTarih.toLocaleDateString('tr-TR', {month: 'long', year: 'numeric'}); 
-                    const yuzde = Math.min(100, Math.max(0, (odenenTaksitSayisi / grup.toplamTaksit) * 100));
-
-                    listDiv.innerHTML += `
-                    <div class="card mb-3 border-0 shadow-sm" style="background: var(--kart-bg); border-left: 5px solid #198754 !important;">
-                        <div class="card-body p-3">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h6 class="fw-bold m-0 text-truncate" style="max-width: 60%;">${grup.isim}</h6>
-                                <span class="badge bg-success rounded-pill">${grup.kalanTutar.toFixed(2)} ₺ Kaldı</span>
-                            </div>
-                            <div class="d-flex justify-content-between small text-muted mb-1">
-                                <span><i class="fas fa-check-double text-primary"></i> ${odenenTaksitSayisi} / ${grup.toplamTaksit} Ödendi</span>
-                                <span><i class="far fa-calendar-alt"></i> Bitiş: ${bitisAy}</span>
-                            </div>
-                            <div class="progress" style="height: 8px; border-radius: 4px; background-color: #e9ecef;">
-                                <div class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: ${yuzde}%"></div>
-                            </div>
-                        </div>
-                    </div>`;
+    
+    // BEKLEYEN İŞLEMLER (PLANLI ÖDEMELER) MANTIĞI
+    function bekleyenleriDinle() {
+        db.collection("bekleyen_islemler")
+            .orderBy("planlananTarih", "asc")
+            .onSnapshot(s => {
+                bekleyenlerCache = [];
+                s.forEach(doc => {
+                    const d = doc.data();
+                    d.id = doc.id;
+                    bekleyenlerCache.push(d);
                 });
-            }
-        } catch (error) {
-            console.error("Taksit hatası:", error);
-            listDiv.innerHTML = `<div class="alert alert-danger small">Bir hata oluştu:<br>${error.message}<br><br><b>ÖNEMLİ:</b> Eğer 'index' hatası alıyorsanız konsolu (F12) açın ve oradaki linke tıklayın.</div>`;
-        }
-    }
-
-    function gorunumDegis(tur) {
-        aktifGorunum = tur;
-        document.getElementById('btnGider').className = `tur-btn ${tur === 'gider' ? 'active' : ''}`;
-        document.getElementById('btnGelir').className = `tur-btn ${tur === 'gelir' ? 'active' : ''}`;
-        
-        seciliFiltre = 'Tümü'; suankiSayfa = 1; listeyiYenile();
-    }
-
-    function taksitAyarla() {
-        const isChecked = document.getElementById('taksitSwitch').checked;
-        const div = document.getElementById('taksitDiv');
-        if(isChecked) {
-            div.style.display = 'block';
-        } else {
-            div.style.display = 'none';
-            document.getElementById('taksitSayisi').value = 1; // Resetle
-            taksitBilgiGuncelle();
-        }
-    }
-
-    function taksitKontrol() {
-        const val = document.getElementById('odemeYontemi').value;
-        const isGider = document.querySelector('input[name="tur"]:checked').value === 'gider';
-        const uyari = document.getElementById('tarihUyari');
-        const switchContainer = document.getElementById('taksitSwitchContainer');
-        
-        if (isGider) {
-            switchContainer.style.display = 'block';
-        } else {
-            switchContainer.style.display = 'none';
-            document.getElementById('taksitSwitch').checked = false;
-            taksitAyarla(); 
-        }
-
-        const kart = kartlarCache.find(k => k.id === val);
-        const seciliTarih = new Date(document.getElementById('tarih').value);
-        
-        if(val !== 'nakit' && kart && kart.tip === 'kredi' && seciliTarih.getDate() > kart.kesimGunu) {
-             uyari.classList.remove('d-none');
-        } else {
-             uyari.classList.add('d-none');
-        }
-    }
-
-    function degiskenKontrol() {
-        const chk = document.getElementById('degiskenFatura').checked;
-        const tInput = document.getElementById('sabitTutar');
-        if (chk) {
-            tInput.value = "";
-            tInput.placeholder = "Değişken (0 girin)";
-            tInput.disabled = true;
-        } else {
-            tInput.disabled = false;
-            tInput.placeholder = "Tutar";
-        }
-    }
-
-    // --- YENİ FATURA MODAL MANTIĞI ---
-    function faturaModalAc() {
-        bootstrap.Modal.getInstance(document.getElementById('digerMenuModal'))?.hide();
-        const modal = new bootstrap.Modal(document.getElementById('faturaModal'));
-        const listDiv = document.getElementById('faturaListesi');
-        
-        // Gider talimatlarını filtrele
-        const talimatlar = sabitlerCache.filter(x => !x.tur || x.tur === 'gider'); 
-        
-        listDiv.innerHTML = "";
-        
-        if(talimatlar.length === 0) { 
-            listDiv.innerHTML = "<div class='text-center text-muted p-3'>Tanımlı fatura veya talimat yok.<br>Menü -> Talimat Ayarları'ndan ekleyebilirsiniz.</div>"; 
-        } else {
-            // GRUPLANDIRMA: Ev Giderleri ve Diğerleri
-            const evGiderleri = talimatlar.filter(x => x.evGideri === true);
-            const digerGiderler = talimatlar.filter(x => !x.evGideri);
-
-            // Yardımcı Fonksiyon: Listeyi Çiz
-            const listeyiCiz = (liste, baslik) => {
-                if(liste.length === 0) return "";
-                
-                let html = `<div class="fw-bold text-muted small mt-3 mb-2 ps-1 border-bottom pb-1">${baslik}</div>`;
-                
-                const bugun = new Date(); 
-                const buAy = bugun.getMonth(); 
-                const buYil = bugun.getFullYear();
-                const aylar = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
-
-                liste.forEach(sabit => {
-                    let durum = "bekliyor";
-                    
-                    if (!sabit.degisken) {
-                        let sonIslem = sabit.sonIslemTarihi ? sabit.sonIslemTarihi.toDate() : new Date(2000, 0, 1);
-                        if (sonIslem.getMonth() === buAy && sonIslem.getFullYear() === buYil) durum = "odendi";
-                    } else {
-                        const buAyIslemVarMi = hamVeriler.some(h => 
-                            h.aciklama.includes(sabit.baslik) && 
-                            h.tarih.toDate().getMonth() === buAy &&
-                            h.tarih.toDate().getFullYear() === buYil
-                        );
-                        if (buAyIslemVarMi) durum = "odendi";
-                    }
-
-                    const ikon = kategoriIkonlari[sabit.kategori] || 'fa-file-invoice';
-                    
-                    // Tarih Hesaplama
-                    let odemeTarihi = new Date(buYil, buAy, sabit.gun);
-                    let gunFarki = Math.ceil((odemeTarihi - bugun) / (1000 * 60 * 60 * 24));
-                    let tarihYazisi = `${sabit.gun} ${aylar[buAy]}`;
-                    let kalanGunYazisi = "";
-
-                    if(gunFarki === 0) kalanGunYazisi = " (Bugün)";
-                    else if(gunFarki === 1) kalanGunYazisi = " (Yarın)";
-                    else if(gunFarki > 1) kalanGunYazisi = ` (${gunFarki} Gün Kaldı)`;
-                    else kalanGunYazisi = " (Günü Geçti!)";
-
-                    let aksiyon = "";
-                    if (durum === 'odendi') {
-                        aksiyon = '<span class="badge bg-success"><i class="fas fa-check"></i> Ödendi</span>';
-                    } else {
-                        if (sabit.degisken) {
-                            aksiyon = `<button class="btn btn-sm btn-outline-primary fw-bold" onclick="faturaOde('${sabit.id}')">Fatura Gir & Öde</button>`;
-                        } else {
-                            aksiyon = `<span class="badge bg-warning text-dark"><i class="fas fa-clock"></i> ${tarihYazisi}${kalanGunYazisi}</span>`;
-                        }
-                    }
-
-                    html += `
-                    <div class="d-flex justify-content-between align-items-center border-bottom py-3">
-                        <div class="d-flex align-items-center">
-                            <div class="text-secondary me-3 fs-4"><i class="fas ${ikon}"></i></div>
-                            <div>
-                                <div class="fw-bold">${sabit.baslik}</div>
-                                <div class="small text-muted">${sabit.degisken ? 'Değişken Tutar' : sabit.tutar + ' ₺ (Sabit)'}</div>
-                            </div>
-                        </div>
-                        <div class="text-end">
-                            ${aksiyon}
-                        </div>
-                    </div>`;
-                });
-                return html;
-            };
-
-            listDiv.innerHTML += listeyiCiz(evGiderleri, '🏠 EVİN STANDART GİDERLERİ');
-            listDiv.innerHTML += listeyiCiz(digerGiderler, 'DİĞER TALİMATLAR');
-        }
-        modal.show();
-    }
-
-    // --- YENİ FATURA ÖDEME (DÜZELTİLDİ: Kategori Seçimi) ---
-    function faturaOde(sabitId) {
-        bootstrap.Modal.getInstance(document.getElementById('faturaModal')).hide();
-        const sabit = sabitlerCache.find(x => x.id === sabitId);
-        if(!sabit) return;
-
-        ekleModalAc();
-        
-        // Önce formun GİDER olarak ayarlandığından ve kategorilerin yüklendiğinden emin ol
-        setTimeout(() => {
-            // 1. Radyo butonunu seç
-            document.getElementById('radioGider').checked = true;
-            // 2. Formu düzenle (Bu kategorileri doldurur)
-            formuDuzenle();
-            
-            // 3. Şimdi değerleri ata
-            document.getElementById('kategori').value = sabit.kategori;
-            
-            let aciklamaMetni = sabit.baslik + " Faturası";
-            if(sabit.evGideri) {
-                const bugun = new Date();
-                bugun.setMonth(bugun.getMonth() - 1);
-                const oncekiAyIsmi = bugun.toLocaleDateString('tr-TR', {month: 'long'});
-                aciklamaMetni = `${sabit.baslik} (${oncekiAyIsmi} Dönemi)`;
-            }
-
-            document.getElementById('aciklama').value = aciklamaMetni;
-            document.getElementById('tutar').value = "";
-            document.getElementById('isSabitHidden').value = "true";
-            document.getElementById('tutar').focus();
-        }, 300);
-    }
-
-    function ekleModalAc() { 
-        document.getElementById('isSabitHidden').value = "false";
-        new bootstrap.Modal(document.getElementById('eklemeModal')).show(); 
-    }
-    
-    function aramaModalAc() { new bootstrap.Modal(document.getElementById('aramaModal')).show(); }
-    function kartModalAc() { bootstrap.Modal.getInstance(document.getElementById('digerMenuModal'))?.hide(); new bootstrap.Modal(document.getElementById('kartModal')).show(); }
-    function sabitlerModalAc() { bootstrap.Modal.getInstance(document.getElementById('digerMenuModal'))?.hide(); new bootstrap.Modal(document.getElementById('sabitlerModal')).show(); }
-    function ayarlarModalAc() { bootstrap.Modal.getInstance(document.getElementById('digerMenuModal'))?.hide(); new bootstrap.Modal(document.getElementById('ayarlarModal')).show(); }
-    function digerMenuAc() { new bootstrap.Modal(document.getElementById('digerMenuModal')).show(); }
-    function limitModalAc() { bootstrap.Modal.getInstance(document.getElementById('analizModal')).hide(); new bootstrap.Modal(document.getElementById('limitModal')).show(); }
-    function analizAc() { const m=new bootstrap.Modal(document.getElementById('analizModal')); m.show(); setTimeout(grafikCiz,300); }
-    
-    function grafikCiz() {
-        const canvasContainer = document.getElementById('canvasContainer');
-        const limitBtn = document.getElementById('limitBtnContainer');
-        const dv = document.getElementById('analizListesi');
-        
-        if(!canvasContainer || !limitBtn || !dv) return;
-
-        dv.innerHTML = "";
-
-        const g = hamVeriler.filter(x => x.tur === 'gider');
-        const tg = g.reduce((a, b) => a + b.tutar, 0);
-
-        if (tg === 0) {
-            dv.innerHTML = "<div class='text-center p-3 text-muted'>Veri yok.</div>";
-            canvasContainer.style.display = 'none';
-            return;
-        }
-
-        if (analizModu === 'kategori') {
-            canvasContainer.style.display = 'block';
-            limitBtn.style.display = 'flex';
-            
-            let km = {};
-            g.forEach(i => { if (!km[i.kategori]) km[i.kategori] = 0; km[i.kategori] += i.tutar; });
-            const ks = Object.keys(km).sort((a, b) => km[b] - km[a]);
-            const dt = ks.map(k => km[k]);
-            
-            const ctx = document.getElementById('harcamaGrafigi').getContext('2d');
-            if (grafikInstance) grafikInstance.destroy();
-            
-            const cl = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#E7E9ED', '#71B37C'];
-            grafikInstance = new Chart(ctx, {
-                type: 'doughnut',
-                data: { labels: ks, datasets: [{ data: dt, backgroundColor: cl, borderWidth: 0 }] },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } } } }
+                otomatikKontrol(); // Liste güncellenince ana ekranı yenile
             });
-
-            ks.forEach((k, i) => {
-                const p = ((km[k] / tg) * 100).toFixed(1);
-                const c = cl[i % cl.length];
-                const ic = kategoriIkonlari[k] || 'fa-circle';
-                let l = "";
-                if (limitlerCache[k]) {
-                    const lm = limitlerCache[k];
-                    const lp = Math.min((km[k] / lm) * 100, 100);
-                    const lc = lp > 90 ? '#dc3545' : (lp > 70 ? '#ffc107' : '#198754');
-                    l = `<div class="mt-1 small text-muted d-flex justify-content-between"><span>Limit: ${lm} ₺</span> <span>${(km[k] / lm * 100).toFixed(0)}%</span></div><div class="limit-bar-bg"><div class="limit-bar-fill" style="width: ${lp}%; background-color: ${lc}"></div></div>`;
-                } else {
-                    l = `<div class="analiz-bar"><div class="analiz-fill" style="width: ${p}%; background-color: ${c}"></div></div>`;
-                }
-                dv.innerHTML += `<div class="analiz-item d-block"><div class="d-flex justify-content-between"><span class="fw-bold" style="color:${c}"><i class="fas ${ic} me-1"></i> ${k}</span><span>${km[k].toFixed(2)} ₺</span></div>${l}</div>`;
-            });
-
-        } else {
-            canvasContainer.style.display = 'none'; 
-            limitBtn.style.display = 'none'; 
-
-            let om = { 'nakit': 0 };
-            kartlarCache.forEach(k => om[k.id] = 0);
-
-            g.forEach(i => {
-                let yontem = i.odemeYontemi || 'nakit';
-                
-                if (yontem !== 'nakit') {
-                    const kartVarMi = kartlarCache.find(k => k.id === yontem);
-                    if (!kartVarMi) {
-                        yontem = 'nakit';
-                    }
-                }
-
-                if (om[yontem] === undefined) om[yontem] = 0; 
-                om[yontem] += i.tutar;
-            });
-
-            const kaynaklar = Object.keys(om).sort((a, b) => om[b] - om[a]);
-
-            kaynaklar.forEach(key => {
-                const tutar = om[key];
-                if(tutar === 0) return; 
-
-                const p = ((tutar / tg) * 100).toFixed(1);
-                let baslik = "Bilinmeyen";
-                let ikon = "fa-question-circle";
-                let renk = "#6c757d";
-
-                if (key === 'nakit') {
-                    baslik = "Nakit / Banka Hesabı";
-                    ikon = "fa-wallet";
-                    renk = "#198754"; 
-                } else {
-                    const kart = kartlarCache.find(k => k.id === key);
-                    if (kart) {
-                        baslik = kart.ad;
-                        ikon = kart.tip === 'banka' ? 'fa-university' : 'fa-credit-card';
-                        renk = "#0d6efd"; 
-                    } else {
-                        baslik = "Silinmiş Kart";
-                    }
-                }
-
-                dv.innerHTML += `
-                <div class="analiz-item d-block py-3">
-                    <div class="d-flex justify-content-between mb-1">
-                        <span class="fw-bold text-dark"><i class="fas ${ikon} me-2" style="color:${renk}"></i> ${baslik}</span>
-                        <span class="fw-bold">${tutar.toFixed(2)} ₺</span>
-                    </div>
-                    <div class="d-flex justify-content-between small text-muted mb-1">
-                        <span>Toplam Harcamadaki Payı</span>
-                        <span>%${p}</span>
-                    </div>
-                    <div class="progress" style="height: 6px;">
-                        <div class="progress-bar" role="progressbar" style="width: ${p}%; background-color: ${renk};" aria-valuenow="${p}" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>`;
-            });
-        }
     }
 
-    function bakiyeGosterGizle(ikon) { bakiyeGizli = !bakiyeGizli; const bakiyeEl = document.getElementById('aylikDurum'); if(bakiyeGizli) { bakiyeEl.innerText = "**** ₺"; ikon.classList.replace('fa-eye-slash', 'fa-eye'); } else { bakiyeEl.innerText = hesaplananBakiye.toFixed(2) + " ₺"; ikon.classList.replace('fa-eye', 'fa-eye-slash'); } }
-    
-    function gelirAyariKontrol() { 
-        const k = localStorage.getItem('gelirGoster'); 
-        gelirGoster = (k === 'true'); 
-        document.getElementById('gelirGosterSwitch').checked = gelirGoster; 
-        document.getElementById('gelirKutusuRow').style.display = gelirGoster ? 'block' : 'none';
-    }
-    
-    function gelirGorunumDegis() { 
-        gelirGoster = document.getElementById('gelirGosterSwitch').checked; 
-        localStorage.setItem('gelirGoster', gelirGoster); 
-        document.getElementById('gelirKutusuRow').style.display = gelirGoster ? 'block' : 'none';
-    }
-    
-    function gelirModalAc() { const modal = new bootstrap.Modal(document.getElementById('gelirModal')); const listDiv = document.getElementById('gelirListesi'); const totalEl = document.getElementById('modalToplamGelir'); const gelirler = hamVeriler.filter(x => x.tur === 'gelir'); const total = gelirler.reduce((acc, curr) => acc + curr.tutar, 0); totalEl.innerText = total.toFixed(2) + " ₺"; listDiv.innerHTML = ""; if(gelirler.length === 0) listDiv.innerHTML = "<div class='text-center text-muted p-3'>Kayıt yok.</div>"; else { gelirler.forEach(item => { let date = "-"; if(item.tarih && item.tarih.toDate) date = item.tarih.toDate().toLocaleDateString('tr-TR', {day: 'numeric', month: 'long'}); const ikon = kategoriIkonlari[item.kategori] || 'fa-circle'; listDiv.innerHTML += `<div class="d-flex justify-content-between align-items-center border-bottom py-2"><div class="d-flex align-items-center"><div class="text-success me-3 fs-5"><i class="fas ${ikon}"></i></div><div><div class="fw-bold">${item.kategori}</div><div class="small text-muted">${item.aciklama || ''} - ${date}</div></div></div><div class="d-flex align-items-center gap-2"><div class="fw-bold text-success">+${item.tutar.toFixed(2)} ₺</div><button class="btn btn-sm text-danger" onclick="sil('${item.id}')"><i class="fas fa-trash"></i></button></div></div>`; }); } modal.show(); }
-    function filtreOlustur(mevcutVeriler) { const filtreDiv = document.getElementById('filtreContainer'); const tabVerileri = mevcutVeriler.filter(x => x.tur === aktifGorunum); const gosterilecekVeriler = aktifGorunum === 'gider' ? tabVerileri.filter(x => !x.otomatik) : tabVerileri; const kategoriler = [...new Set(gosterilecekVeriler.map(item => item.kategori))]; let html = `<button class="filtre-chip ${seciliFiltre === 'Tümü' ? 'active' : ''}" onclick="filtreUygula('Tümü')">Tümü</button>`; kategoriler.forEach(kat => { const ikon = kategoriIkonlari[kat] || 'fa-circle'; const active = seciliFiltre === kat ? 'active' : ''; html += `<button class="filtre-chip ${active}" onclick="filtreUygula('${kat}')"><i class="fas ${ikon}"></i> ${kat}</button>`; }); filtreDiv.innerHTML = html; }
-    function filtreUygula(kategori) { seciliFiltre = kategori; suankiSayfa = 1; listeyiYenile(); }
-    function sayfaDegistir(yon) { suankiSayfa += yon; listeyiYenile(); document.getElementById('hareketListesi').scrollIntoView({ behavior: 'smooth' }); }
-    
-    function listeyiYenile() { 
-        const liste = document.getElementById('hareketListesi'); 
-        if(!liste) return;
-        liste.innerHTML = ""; 
-        let filtrelenmis = hamVeriler.filter(x => x.tur === aktifGorunum); 
-        if (aktifGorunum === 'gider') filtrelenmis = filtrelenmis.filter(x => !x.otomatik); 
-        if (seciliFiltre !== 'Tümü') filtrelenmis = filtrelenmis.filter(d => d.kategori === seciliFiltre); 
-        
-        if(filtrelenmis.length === 0) { 
-            liste.innerHTML = '<div class="text-center text-muted mt-4">Kayıt yok.</div>'; 
-            document.getElementById('paginationControls').style.display = 'none'; 
-            return; 
-        } 
-        
-        const toplamSayfa = Math.ceil(filtrelenmis.length / sayfaBasiKayit); 
-        if(suankiSayfa < 1) suankiSayfa = 1; 
-        if(suankiSayfa > toplamSayfa) suankiSayfa = toplamSayfa; 
-        
-        const baslangic = (suankiSayfa - 1) * sayfaBasiKayit; 
-        const gosterilecek = filtrelenmis.slice(baslangic, baslangic + sayfaBasiKayit); 
-        
-        filtreOlustur(hamVeriler); 
-        
-        gosterilecek.forEach(d => { 
-            let date = "-";
-            if(d.tarih && d.tarih.toDate) date = d.tarih.toDate().toLocaleDateString('tr-TR', {day: 'numeric', month: 'long'}); 
-
-            let badge = ""; 
-            if(d.tur === 'gider' && d.odemeYontemi && d.odemeYontemi !== 'nakit') { 
-                const k = kartlarCache.find(x => x.id === d.odemeYontemi); 
-                const kn = k ? k.ad : 'Kart'; 
-                badge = `<span class="badge-kaynak bg-kredi"><i class="fas fa-credit-card"></i> ${kn}</span>`; 
-            } else { 
-                badge = `<span class="badge-kaynak bg-nakit"><i class="fas fa-wallet"></i> Nakit/Banka</span>`; 
-            } 
-            const ikon = kategoriIkonlari[d.kategori] || 'fa-circle'; 
-            const renk = d.tur === 'gelir' ? 'text-success' : 'text-danger'; 
-            const isaret = d.tur === 'gelir' ? '+' : '-'; 
-            const borderClass = d.tur === 'gelir' ? 'border-gelir' : 'border-gider'; 
-            
-            let sabitIkon = "";
-            if(d.sabitMi === true) {
-                sabitIkon = '<i class="fas fa-home text-warning ms-1 small" title="Sabit/Büyük Gider"></i>';
-            }
-
-            const btnGrubu = `
-                <div class="d-flex align-items-center gap-3">
-                    <i class="fas fa-pen text-primary opacity-50 small" style="cursor:pointer" onclick="duzenleAc('${d.id}')"></i>
-                    <i class="fas fa-trash text-muted opacity-50 small" style="cursor:pointer" onclick="sil('${d.id}')"></i>
-                </div>`;
-            
-            liste.innerHTML += `
-            <div class="islem-item ${borderClass} d-flex justify-content-between align-items-center">
-                <div class="d-flex align-items-center">
-                    <div class="kat-ikon-kutusu"><i class="fas ${ikon}"></i></div>
-                    <div>
-                        <div class="fw-bold mb-0">${d.kategori} ${sabitIkon}</div>
-                        <div class="small opacity-75">${d.aciklama||''} <span class="ms-1 fw-bold text-primary" style="font-size:0.75rem;">${date}</span></div>
-                        <div class="mt-1">${badge}</div>
-                    </div>
-                </div>
-                <div class="text-end d-flex flex-column align-items-end">
-                    <div class="fw-bold ${renk} mb-1">${isaret}${d.tutar.toFixed(2)}</div>
-                    ${btnGrubu}
-                </div>
-            </div>`; 
-        }); 
-        
-        if (toplamSayfa > 1) { 
-            document.getElementById('paginationControls').style.display = 'flex'; 
-            document.getElementById('pageInfo').innerText = `Sayfa ${suankiSayfa} / ${toplamSayfa}`; 
-            document.getElementById('btnPrev').disabled = (suankiSayfa === 1); 
-            document.getElementById('btnNext').disabled = (suankiSayfa === toplamSayfa); 
-        } else { 
-            document.getElementById('paginationControls').style.display = 'none'; 
-        } 
-    }
-
-    async function kartBorclariniHesapla() { const now = new Date(); const cs = new Date(now.getFullYear(), now.getMonth(), 1); const ce = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59); const ns = new Date(now.getFullYear(), now.getMonth() + 1, 1); for (let k of kartlarCache) { if(k.tip !== 'kredi') continue; const sb = await db.collection("islemler").where("odemeYontemi","==",k.id).where("tarih",">=",cs).where("tarih","<=",ce).get(); let tb = 0; sb.forEach(d=>tb+=d.data().tutar); const sg = await db.collection("islemler").where("odemeYontemi","==",k.id).where("tarih",">=",ns).get(); let tg = 0; sg.forEach(d=>tg+=d.data().tutar); const el = document.getElementById(`borc-bilgi-${k.id}`); if(el) el.innerHTML=`<div class="mt-2 d-flex gap-2"><span class="badge bg-primary badge-borc">Bu Ay: ${tb.toFixed(0)}₺</span><span class="badge bg-warning text-dark badge-borc">Gelecek: ${tg.toFixed(0)}₺</span></div>`; } }
-    function temaKontrol() { const t = localStorage.getItem('tema'); if(t === 'dark') { document.body.classList.add('dark-mode'); document.getElementById('temaIkonu').classList.replace('fa-moon', 'fa-sun'); } }
-    function temaDegistir() { document.body.classList.toggle('dark-mode'); const isDark = document.body.classList.contains('dark-mode'); document.getElementById('temaIkonu').classList.replace(isDark ? 'fa-moon' : 'fa-sun', isDark ? 'fa-sun' : 'fa-moon'); localStorage.setItem('tema', isDark ? 'dark' : 'light'); }
-    async function aramaYap() { const k = document.getElementById('aramaInput').value.toLowerCase(); const div = document.getElementById('aramaSonuclari'); if(k.length < 2) return; div.innerHTML = "Aranıyor..."; const snap = await db.collection("islemler").orderBy("tarih", "desc").limit(500).get(); let html = ""; snap.forEach(doc => { const d = doc.data(); if((d.aciklama+" "+d.kategori).toLowerCase().includes(k)) { const c = d.tur==='gelir'?'text-success':'text-danger'; html += `<div class="d-flex justify-content-between border-bottom py-2"><div><div class="fw-bold">${d.kategori}</div><div class="small text-muted">${d.aciklama} - ${d.tarih.toDate().toLocaleDateString('tr-TR', {day: 'numeric', month: 'long'})}</div></div><div class="${c} fw-bold">${d.tur==='gelir'?'+':'-'}${d.tutar} ₺</div></div>`; } }); div.innerHTML = html || "Bulunamadı."; }
-    function limitleriGetir() { db.collection("kategoriLimitleri").onSnapshot(snap => { limitlerCache={}; const ul=document.getElementById('mevcutLimitler'); ul.innerHTML=""; snap.forEach(doc=>{ const d=doc.data(); limitlerCache[d.kategori]=d.tutar; ul.innerHTML+=`<li class="list-group-item d-flex justify-content-between"><span>${d.kategori}</span> <span>${d.tutar} ₺ <i class="fas fa-trash text-danger ms-2" onclick="limitSil('${doc.id}')" style="cursor:pointer"></i></span></li>`; }); }); const s=document.getElementById('limitKategori'); s.innerHTML=""; giderKats.forEach(k=>s.innerHTML+=`<option value="${k}">${k}</option>`); }
-    document.getElementById('limitForm').addEventListener('submit', (e) => { e.preventDefault(); const kat=document.getElementById('limitKategori').value; const tut=parseFloat(document.getElementById('limitTutar').value); db.collection("kategoriLimitleri").doc(kat).set({ kategori: kat, tutar: tut }).then(()=>{ document.getElementById('limitForm').reset(); bootstrap.Modal.getInstance(document.getElementById('limitModal')).hide(); analizAc(); }); });
-    function limitSil(id) { db.collection("kategoriLimitleri").doc(id).delete(); }
-    
-    // --- OTO KONTROL VE ANA SAYFA UYARISI ---
     async function otomatikKontrol() { 
-        try {
-            // VERİTABANINDAN ÇEKME, HAFIZADAN KULLAN (HIZ İÇİN)
-            // Eğer sabitlerCache boşsa, verinin gelmesini beklemesi gerekir ama 
-            // şimdilik sadece boşsa çalışmaz.
-            if(sabitlerCache.length === 0) return;
+        const yaklasanDiv = document.getElementById('yaklasanFaturalarArea');
+        if (!yaklasanDiv) return;
+        yaklasanDiv.innerHTML = ""; 
 
-            const yaklasanDiv = document.getElementById('yaklasanFaturalarArea');
-            yaklasanDiv.innerHTML = ""; 
+        const bugun = new Date(); 
+        bugun.setHours(0,0,0,0);
+        const buAy = bugun.getMonth(); 
+        const buYil = bugun.getFullYear(); 
+        const aylar = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
+        
+        let batch = db.batch(); 
+        let islemVar = false; 
+        let odenanSayisi = 0;
 
-            const bugun=new Date(); 
-            const buAy=bugun.getMonth(); 
-            const buYil=bugun.getFullYear(); 
-            const aylar = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
-            
-            let cnt=0; 
-            let batch=db.batch(); 
-            let islem=false; 
+        // 1. BEKLEYENLERİ KONTROL ET VE ÖDE
+        bekleyenlerCache.forEach(bekleyen => {
+            const planTarih = bekleyen.planlananTarih.toDate();
+            planTarih.setHours(0,0,0,0);
 
-            let yaklasanlar = [];
+            if (planTarih <= bugun) {
+                const yeniRef = db.collection("islemler").doc();
+                batch.set(yeniRef, {
+                    tur: bekleyen.tur,
+                    tutar: bekleyen.tutar,
+                    kategori: bekleyen.kategori,
+                    aciklama: bekleyen.aciklama + " (Oto. Ödeme)",
+                    odemeYontemi: bekleyen.odemeYontemi,
+                    tarih: firebase.firestore.Timestamp.fromDate(planTarih),
+                    otomatik: true,
+                    olusturulma: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                batch.delete(db.collection("bekleyen_islemler").doc(bekleyen.id));
+                islemVar = true;
+                odenanSayisi++;
+            }
+        });
 
+        // 2. SABİTLERİ KONTROL ET (OTOMATİK EKLEME)
+        if(sabitlerCache.length > 0) {
             sabitlerCache.forEach(d => { 
-                // --- ANA SAYFA UYARI MANTIĞI ---
-                let odendi = false;
-                if (!d.degisken) {
-                    let sonIslem = d.sonIslemTarihi ? d.sonIslemTarihi.toDate() : new Date(2000, 0, 1);
-                    if (sonIslem.getMonth() === buAy && sonIslem.getFullYear() === buYil) odendi = true;
-                } else {
-                    // Değişken faturalar için isim kontrolü
-                    // Eğer hamVeriler (şu anki liste) henüz yüklenmediyse, ödenmemiş varsay
-                    if (hamVeriler.length > 0) {
-                        const buAyIslemVarMi = hamVeriler.some(h => 
-                            h.aciklama.includes(d.baslik) && 
-                            h.tarih.toDate().getMonth() === buAy &&
-                            h.tarih.toDate().getFullYear() === buYil
-                        );
-                        if (buAyIslemVarMi) odendi = true;
-                    }
-                }
-
-                if(!odendi) {
-                    let odemeTarihi = new Date(buYil, buAy, d.gun);
-                    // Gün farkı hesapla
-                    let gunFarki = Math.ceil((odemeTarihi - bugun) / (1000 * 60 * 60 * 24));
-                    
-                    // Görünürlük Aralığı: 5 gün öncesinden başla, 30 gün sonrasına kadar göster
-                    if (gunFarki >= -5 && gunFarki <= 30) {
-                        yaklasanlar.push({
-                            baslik: d.baslik,
-                            gun: d.gun,
-                            tutar: d.tutar,
-                            degisken: d.degisken,
-                            fark: gunFarki
-                        });
-                    }
-                }
-                
-                // OTO EKLEME (Sadece Sabitler)
-                if(d.degisken) return;
-
+                if (d.degisken) return; 
                 const t=d.tur||'gider'; 
                 let son=d.sonIslemTarihi?d.sonIslemTarihi.toDate():new Date(2000,0,1); 
                 
@@ -1153,131 +456,450 @@
                         sabitMi: true,
                         olusturulma: firebase.firestore.FieldValue.serverTimestamp() 
                     }); 
-                    // Önemli: Cache'i değil, veritabanını güncelle
                     batch.update(db.collection("sabitler").doc(d.id), { sonIslemTarihi: firebase.firestore.Timestamp.fromDate(bugun) }); 
-                    islem=true; 
-                    cnt++; 
+                    islemVar = true; 
+                    odenanSayisi++; 
                 } 
             }); 
-            
-            if(yaklasanlar.length > 0) {
-                yaklasanlar.sort((a,b) => a.fark - b.fark);
+        }
+
+        if (islemVar) {
+            await batch.commit();
+            toastGoster(`${odenanSayisi} adet bekleyen işlem otomatik ödendi!`);
+            return; 
+        }
+
+        // 3. EKRANA BAS (BİRLEŞTİRİLMİŞ LİSTE)
+        let gosterilecekler = [];
+
+        // A) Sabit Tanımlardan Gelenler
+        sabitlerCache.forEach(d => {
+            const planlanmisMi = bekleyenlerCache.some(b => b.aciklama.includes(d.baslik));
+            if(planlanmisMi) return;
+
+            let odendi = false;
+            if (!d.degisken) {
+                let sonIslem = d.sonIslemTarihi ? d.sonIslemTarihi.toDate() : new Date(2000, 0, 1);
+                if (sonIslem.getMonth() === buAy && sonIslem.getFullYear() === buYil) odendi = true;
+            } else {
+                if (hamVeriler.length > 0) {
+                    const buAyIslemVarMi = hamVeriler.some(h => 
+                        h.aciklama.includes(d.baslik) && 
+                        h.tarih.toDate().getMonth() === buAy &&
+                        h.tarih.toDate().getFullYear() === buYil
+                    );
+                    if (buAyIslemVarMi) odendi = true;
+                }
+            }
+
+            if(!odendi) {
+                let odemeTarihi = new Date(buYil, buAy, d.gun);
+                let gunFarki = Math.ceil((odemeTarihi - bugun) / (1000 * 60 * 60 * 24));
                 
-                let html = `<div class="d-flex overflow-auto pb-2 mb-2" style="gap:10px;">`;
-                yaklasanlar.forEach(y => {
-                    let zamanText = "";
-                    let renkClass = "bg-warning text-dark";
-                    
-                    if(y.fark < 0) { zamanText = "Gecikti!"; renkClass = "bg-danger text-white"; }
-                    else if(y.fark === 0) { zamanText = "Bugün!"; renkClass = "bg-danger text-white"; }
-                    else if(y.fark === 1) { zamanText = "Yarın"; }
-                    else { zamanText = `${y.gun} ${aylar[buAy]}`; }
-
-                    let tutarText = y.degisken ? "Tutar Girilmeli" : `${y.tutar} ₺`;
-
-                    html += `
-                    <div class="card border-0 shadow-sm p-2 flex-shrink-0" style="min-width: 140px; background: var(--kart-bg);">
-                        <div class="d-flex align-items-center mb-1">
-                            <div class="badge ${renkClass} me-2" style="font-size:0.7rem;">${zamanText}</div>
-                        </div>
-                        <div class="fw-bold small text-truncate">${y.baslik}</div>
-                        <div class="small text-muted">${tutarText}</div>
-                    </div>`;
-                });
-                html += `</div>`;
-                yaklasanDiv.innerHTML = `<div class="fw-bold small text-muted mb-2 ps-1">Yaklaşan Ödemeler</div>` + html;
+                if (gunFarki >= -5 && gunFarki <= 30) {
+                    gosterilecekler.push({
+                        id: d.id,
+                        baslik: d.baslik,
+                        tutar: d.degisken ? "?" : d.tutar,
+                        fark: gunFarki,
+                        tur: 'sabit',
+                        tarihYazi: `${d.gun} ${aylar[buAy]}`
+                    });
+                }
             }
+        });
 
-            if(islem) { 
-                await batch.commit(); 
-                toastGoster(`${cnt} otomatik işlem eklendi!`); 
-            }
-        } catch(e) { console.error(e); } 
+        // B) Planlanmış Bekleyenler
+        bekleyenlerCache.forEach(b => {
+            const planTarih = b.planlananTarih.toDate();
+            const fark = Math.ceil((planTarih - bugun) / (1000 * 60 * 60 * 24));
+            gosterilecekler.push({
+                id: b.id,
+                baslik: b.aciklama || "İsimsiz Fatura",
+                tutar: b.tutar,
+                fark: fark,
+                tur: 'planli',
+                tarihYazi: planTarih.toLocaleDateString('tr-TR', {day: 'numeric', month: 'long'})
+            });
+        });
+            
+        if(gosterilecekler.length > 0) {
+            gosterilecekler.sort((a,b) => a.fark - b.fark);
+            
+            let html = `<div class="d-flex overflow-auto pb-2 mb-2" style="gap:10px;">`;
+            gosterilecekler.forEach(y => {
+                let zamanText = "";
+                let renkClass = "bg-warning text-dark";
+                let ikon = "";
+                let tiklamaOlayi = ""; 
+                
+                if (y.tur === 'planli') {
+                    renkClass = "bg-info text-dark"; 
+                    ikon = '<i class="fas fa-robot ms-1" title="Otomatik Ödenecek"></i>';
+                    tiklamaOlayi = `onclick="planliSil('${y.id}')" style="cursor:pointer;"`;
+                } else {
+                    tiklamaOlayi = `onclick="sabitlerModalAc()" style="cursor:pointer;"`;
+                }
+
+                if(y.fark < 0) { zamanText = "Gecikti!"; renkClass = "bg-danger text-white"; }
+                else if(y.fark === 0) { zamanText = "Bugün"; renkClass = "bg-danger text-white"; }
+                else if(y.fark === 1) { zamanText = "Yarın"; }
+                else { zamanText = y.tarihYazi; }
+
+                let tutarText = (y.tutar === "?") ? "Girilmedi" : `${y.tutar} ₺`;
+
+                html += `
+                <div class="card border-0 shadow-sm p-2 flex-shrink-0" ${tiklamaOlayi} style="min-width: 140px; background: var(--kart-bg);">
+                    <div class="d-flex align-items-center mb-1">
+                        <div class="badge ${renkClass} me-2" style="font-size:0.7rem;">${zamanText}</div>
+                        ${y.tur === 'planli' ? '<small class="text-danger ms-auto"><i class="fas fa-times"></i></small>' : ''}
+                    </div>
+                    <div class="fw-bold small text-truncate">${y.baslik} ${ikon}</div>
+                    <div class="small text-muted">${tutarText}</div>
+                </div>`;
+            });
+            html += `</div>`;
+            yaklasanDiv.innerHTML = `<div class="fw-bold small text-muted mb-2 ps-1">Yaklaşan & Planlı Ödemeler</div>` + html;
+        }
     }
-    
-    function sabitFormuDuzenle() { const tur=document.querySelector('input[name="sabitTur"]:checked').value; const s=document.getElementById('sabitKategori'); s.innerHTML=""; (tur==='gider'?giderKats:gelirKats).forEach(k=>s.innerHTML+=`<option value="${k}">${k}</option>`); }
-    
-    document.getElementById('sabitEkleForm').addEventListener('submit', (e)=>{ 
-        e.preventDefault(); 
-        const t=document.querySelector('input[name="sabitTur"]:checked').value; 
-        const isDegisken = document.getElementById('degiskenFatura').checked;
-        const isEvGideri = document.getElementById('evGideriCheck').checked;
-        const tutarVal = isDegisken ? 0 : parseFloat(document.getElementById('sabitTutar').value);
 
-        db.collection("sabitler").add({ 
-            baslik:document.getElementById('sabitBaslik').value, 
-            tutar: tutarVal, 
-            gun:parseInt(document.getElementById('sabitGun').value), 
-            kategori:document.getElementById('sabitKategori').value, 
-            tur:t, 
-            degisken: isDegisken, 
-            evGideri: isEvGideri, 
-            sonIslemTarihi:null 
-        }).then(()=>{ 
-            document.getElementById('sabitEkleForm').reset(); 
-            degiskenKontrol(); 
-            alert("Talimat Eklendi!"); 
-        }); 
+    function planliSil(id) {
+        if(confirm("Bu planlı ödemeyi iptal etmek (silmek) istiyor musun?")) {
+            db.collection("bekleyen_islemler").doc(id).delete()
+                .then(() => toastGoster("Planlı ödeme iptal edildi."))
+                .catch(err => alert("Hata: " + err));
+        }
+    }
+
+    async function gecmisYonetimAc() {
+        bootstrap.Modal.getInstance(document.getElementById('digerMenuModal'))?.hide();
+        const modal = new bootstrap.Modal(document.getElementById('gecmisYonetimModal'));
+        const div = document.getElementById('gecmisListesi');
+        
+        modal.show();
+        div.innerHTML = "<div class='text-center py-4'><div class='spinner-border text-warning'></div><div class='mt-2'>Veriler yükleniyor...</div></div>";
+
+        try {
+            const snapshot = await db.collection("islemler")
+                                     .orderBy("olusturulma", "desc")
+                                     .limit(100)
+                                     .get();
+            div.innerHTML = "";
+            gecmisCache = [];
+            if (snapshot.empty) { div.innerHTML = "<div class='text-center p-4 text-muted'>Kayıt bulunamadı.</div>"; return; }
+            snapshot.forEach(doc => {
+                const d = doc.data();
+                d.id = doc.id;
+                gecmisCache.push(d);
+                let tarihStr = "-";
+                if(d.tarih && d.tarih.toDate) tarihStr = d.tarih.toDate().toLocaleDateString('tr-TR', {day: 'numeric', month: 'long', year:'numeric'});
+                const renk = d.tur === 'gelir' ? 'text-success' : 'text-danger';
+                const isaret = d.tur === 'gelir' ? '+' : '-';
+                const ikon = kategoriIkonlari[d.kategori] || 'fa-circle';
+                const html = `<div class="list-group-item list-group-item-action p-3"><div class="d-flex justify-content-between align-items-center"><div class="d-flex align-items-center"><div class="me-3 fs-4 text-secondary" style="width:40px; text-align:center;"><i class="fas ${ikon}"></i></div><div><div class="fw-bold">${d.kategori}</div><div class="small text-muted">${d.aciklama || 'Açıklama yok'}</div><div class="badge bg-light text-dark border mt-1 fw-normal"><i class="far fa-calendar-alt me-1"></i>${tarihStr}</div></div></div><div class="text-end"><div class="fs-5 fw-bold ${renk} mb-2">${isaret}${d.tutar} ₺</div><div class="btn-group"><button class="btn btn-sm btn-outline-primary" onclick="gecmisDuzenle('${d.id}')"><i class="fas fa-pen"></i></button><button class="btn btn-sm btn-outline-danger" onclick="gecmisSil('${d.id}')"><i class="fas fa-trash"></i></button></div></div></div></div>`;
+                div.innerHTML += html;
+            });
+        } catch (error) { div.innerHTML = "<div class='text-center p-4 text-danger'>Hata: " + error.message + "</div>"; }
+    }
+
+    function gecmisDuzenle(id) {
+        const veri = gecmisCache.find(x => x.id === id);
+        if (!veri) return;
+        duzenlenecekId = id;
+        bootstrap.Modal.getInstance(document.getElementById('gecmisYonetimModal')).hide();
+        const modal = new bootstrap.Modal(document.getElementById('duzenleModal'));
+        if (veri.tur === 'gider') document.getElementById('editRadioGider').checked = true; else document.getElementById('editRadioGelir').checked = true;
+        editFormuDuzenle();
+        document.getElementById('editKategori').value = veri.kategori;
+        document.getElementById('editTutar').value = veri.tutar;
+        document.getElementById('editAciklama').value = veri.aciklama || '';
+        document.getElementById('editOdemeYontemi').value = veri.odemeYontemi || 'nakit';
+        if(veri.tarih && veri.tarih.toDate) {
+            const date = veri.tarih.toDate();
+            document.getElementById('editTarih').value = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+        }
+        modal.show();
+    }
+
+    function gecmisSil(id) { if(confirm("Kalıcı olarak silinecek. Emin misin?")) db.collection("islemler").doc(id).delete().then(() => { gecmisYonetimAc(); toastGoster("Kayıt silindi."); }); }
+    function duzenleAc(id) {
+        duzenlenecekId = id;
+        const veri = hamVeriler.find(x => x.id === id);
+        if (!veri) return;
+        const modal = new bootstrap.Modal(document.getElementById('duzenleModal'));
+        if (veri.tur === 'gider') document.getElementById('editRadioGider').checked = true; else document.getElementById('editRadioGelir').checked = true;
+        editFormuDuzenle();
+        document.getElementById('editKategori').value = veri.kategori;
+        document.getElementById('editTutar').value = veri.tutar;
+        document.getElementById('editAciklama').value = veri.aciklama || '';
+        document.getElementById('editOdemeYontemi').value = veri.odemeYontemi || 'nakit';
+        if(veri.tarih && veri.tarih.toDate) {
+            const date = veri.tarih.toDate();
+            document.getElementById('editTarih').value = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+        }
+        modal.show();
+    }
+
+    function editFormuDuzenle() {
+        const t = document.querySelector('input[name="editTur"]:checked').value;
+        const s = document.getElementById('editKategori');
+        s.innerHTML = "";
+        (t === 'gider' ? giderKats : gelirKats).forEach(k => s.innerHTML += `<option value="${k}">${k}</option>`);
+        if (t === 'gelir') { document.getElementById('editOdemeKutusu').style.display = 'none'; document.getElementById('editOdemeYontemi').value = 'nakit'; } else document.getElementById('editOdemeKutusu').style.display = 'block';
+        const sel = document.getElementById('editOdemeYontemi');
+        const mevcutSecim = sel.value;
+        sel.innerHTML = '<option value="nakit">💵 Nakit / Banka Hesabı</option>';
+        kartlarCache.forEach(k => { let o = document.createElement('option'); o.value = k.id; o.text = `${k.tip === 'banka' ? '🏧' : '💳'} ${k.ad}`; sel.appendChild(o); });
+        sel.value = mevcutSecim;
+    }
+
+    document.getElementById('duzenleFormu').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!duzenlenecekId) return;
+        try {
+            await db.collection("islemler").doc(duzenlenecekId).update({
+                tur: document.querySelector('input[name="editTur"]:checked').value,
+                tutar: parseFloat(document.getElementById('editTutar').value),
+                kategori: document.getElementById('editKategori').value,
+                aciklama: document.getElementById('editAciklama').value,
+                odemeYontemi: document.getElementById('editOdemeYontemi').value,
+                tarih: firebase.firestore.Timestamp.fromDate(new Date(document.getElementById('editTarih').value))
+            });
+            bootstrap.Modal.getInstance(document.getElementById('duzenleModal')).hide();
+            toastGoster("İşlem güncellendi!");
+        } catch (error) { alert("Hata: " + error.message); }
     });
 
-    function sabitleriDinle() { 
-        db.collection("sabitler").onSnapshot(s => { 
-            sabitlerCache = []; 
-            const div = document.getElementById('sabitListesi'); 
-            div.innerHTML = ""; 
-            s.forEach(doc => { 
-                const da = doc.data(); 
-                da.id = doc.id; 
-                sabitlerCache.push(da); 
-                const c = da.tur === 'gelir' ? 'text-success' : 'text-danger'; 
-                const tutarBilgisi = da.degisken ? '<span class="badge bg-secondary">Değişken</span>' : `(${da.tutar} ₺)`;
-                
-                let evIkonu = da.evGideri ? '<i class="fas fa-home text-warning ms-1" title="Ev Gideri"></i>' : '';
+    async function taksitModalAc() {
+        bootstrap.Modal.getInstance(document.getElementById('digerMenuModal'))?.hide();
+        const modal = new bootstrap.Modal(document.getElementById('taksitModal'));
+        const listDiv = document.getElementById('taksitListesi');
+        listDiv.innerHTML = "<div class='text-center py-4'><div class='spinner-border text-success'></div></div>";
+        modal.show();
+        try {
+            const bugun = new Date(); bugun.setHours(0,0,0,0);
+            const snapshot = await db.collection("islemler").where("tur", "==", "gider").where("tarih", ">=", firebase.firestore.Timestamp.fromDate(bugun)).get();
+            const taksitGruplari = {};
+            snapshot.forEach(doc => {
+                const d = doc.data();
+                const match = d.aciklama && d.aciklama.match(/(.*)\s\((\d+)\/(\d+)\)/);
+                if (match) {
+                    const anaIsim = match[1].trim(); 
+                    if (!taksitGruplari[anaIsim]) { taksitGruplari[anaIsim] = { isim: anaIsim, toplamTaksit: parseInt(match[3]), kalanTaksitSayisi: 0, kalanTutar: 0, sonTarih: d.tarih.toDate() }; }
+                    taksitGruplari[anaIsim].kalanTaksitSayisi++; 
+                    taksitGruplari[anaIsim].kalanTutar += d.tutar;
+                    const tarih = d.tarih.toDate(); 
+                    if (tarih > taksitGruplari[anaIsim].sonTarih) taksitGruplari[anaIsim].sonTarih = tarih;
+                }
+            });
+            listDiv.innerHTML = "";
+            if (Object.keys(taksitGruplari).length === 0) { listDiv.innerHTML = "<div class='text-center text-muted p-3'>Taksit bulunmuyor.</div>"; } else {
+                Object.values(taksitGruplari).forEach(grup => {
+                    const odenen = grup.toplamTaksit - grup.kalanTaksitSayisi; 
+                    const yuzde = (odenen / grup.toplamTaksit) * 100;
+                    listDiv.innerHTML += `<div class="card mb-3 border-0 shadow-sm" style="background: var(--kart-bg); border-left: 5px solid #198754 !important;"><div class="card-body p-3"><div class="d-flex justify-content-between align-items-center mb-2"><h6 class="fw-bold m-0 text-truncate">${grup.isim}</h6><span class="badge bg-success rounded-pill">${grup.kalanTutar.toFixed(2)} ₺ Kaldı</span></div><div class="d-flex justify-content-between small text-muted mb-1"><span>${odenen} / ${grup.toplamTaksit} Ödendi</span><span>Bitiş: ${grup.sonTarih.toLocaleDateString('tr-TR', {month: 'long', year: 'numeric'})}</span></div><div class="progress" style="height: 8px;"><div class="progress-bar bg-success" style="width: ${yuzde}%"></div></div></div></div>`;
+                });
+            }
+        } catch (error) { listDiv.innerHTML = `<div class="alert alert-danger">Hata: ${error.message}</div>`; }
+    }
 
-                div.innerHTML += `<div class="list-group-item d-flex justify-content-between px-0 bg-transparent"><div><strong>${da.baslik} ${evIkonu}</strong> <span class="${c}">${tutarBilgisi}</span><div class="small text-muted">Her ayın ${da.gun}. günü</div></div><button class="btn btn-sm text-danger" onclick="sabitSil('${doc.id}')"><i class="fas fa-trash"></i></button></div>`; 
-            }); 
-            // Sabitler güncellendiğinde panoyu da yenile (Hızlandırıldı)
-            otomatikKontrol();
-        }); 
+    function gorunumDegis(tur) {
+        aktifGorunum = tur;
+        document.getElementById('btnGider').className = `tur-btn ${tur === 'gider' ? 'active' : ''}`;
+        document.getElementById('btnGelir').className = `tur-btn ${tur === 'gelir' ? 'active' : ''}`;
+        seciliFiltre = 'Tümü'; suankiSayfa = 1; listeyiYenile();
+    }
+
+    function taksitAyarla() {
+        const isChecked = document.getElementById('taksitSwitch').checked;
+        if(isChecked) document.getElementById('taksitDiv').style.display = 'block'; else { document.getElementById('taksitDiv').style.display = 'none'; document.getElementById('taksitSayisi').value = 1; taksitBilgiGuncelle(); }
+    }
+
+    function taksitKontrol() {
+        const val = document.getElementById('odemeYontemi').value;
+        const isGider = document.querySelector('input[name="tur"]:checked').value === 'gider';
+        if (isGider) document.getElementById('taksitSwitchContainer').style.display = 'block'; else { document.getElementById('taksitSwitchContainer').style.display = 'none'; document.getElementById('taksitSwitch').checked = false; taksitAyarla(); }
+        const kart = kartlarCache.find(k => k.id === val);
+        const seciliTarih = new Date(document.getElementById('tarih').value);
+        if(val !== 'nakit' && kart && kart.tip === 'kredi' && seciliTarih.getDate() > kart.kesimGunu) document.getElementById('tarihUyari').classList.remove('d-none'); else document.getElementById('tarihUyari').classList.add('d-none');
+    }
+
+    function degiskenKontrol() {
+        const chk = document.getElementById('degiskenFatura').checked;
+        const tInput = document.getElementById('sabitTutar');
+        if (chk) { tInput.value = ""; tInput.placeholder = "Değişken (0 girin)"; tInput.disabled = true; } else { tInput.disabled = false; tInput.placeholder = "Tutar"; }
+    }
+
+    function faturaModalAc() {
+        bootstrap.Modal.getInstance(document.getElementById('digerMenuModal'))?.hide();
+        const modal = new bootstrap.Modal(document.getElementById('faturaModal'));
+        const listDiv = document.getElementById('faturaListesi');
+        const talimatlar = sabitlerCache.filter(x => !x.tur || x.tur === 'gider'); 
+        listDiv.innerHTML = "";
+        
+        if(talimatlar.length === 0) { listDiv.innerHTML = "<div class='text-center text-muted p-3'>Talimat yok.</div>"; } else {
+            const listeyiCiz = (liste, baslik) => {
+                if(liste.length === 0) return "";
+                let html = `<div class="fw-bold text-muted small mt-3 mb-2 ps-1 border-bottom pb-1">${baslik}</div>`;
+                const bugun = new Date(); const buAy = bugun.getMonth(); const buYil = bugun.getFullYear(); const aylar = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
+                liste.forEach(sabit => {
+                    let durum = "bekliyor";
+                    // Eğer bekleyenlerde varsa, planlanmış demektir.
+                    const planlanmis = bekleyenlerCache.some(b => b.aciklama.includes(sabit.baslik));
+                    
+                    if (planlanmis) {
+                        durum = "planlandi";
+                    } else if (!sabit.degisken) {
+                        let sonIslem = sabit.sonIslemTarihi ? sabit.sonIslemTarihi.toDate() : new Date(2000, 0, 1);
+                        if (sonIslem.getMonth() === buAy && sonIslem.getFullYear() === buYil) durum = "odendi";
+                    } else {
+                        const buAyIslemVarMi = hamVeriler.some(h => h.aciklama.includes(sabit.baslik) && h.tarih.toDate().getMonth() === buAy && h.tarih.toDate().getFullYear() === buYil);
+                        if (buAyIslemVarMi) durum = "odendi";
+                    }
+
+                    const ikon = kategoriIkonlari[sabit.kategori] || 'fa-file-invoice';
+                    let aksiyon = "";
+                    if (durum === 'odendi') aksiyon = '<span class="badge bg-success"><i class="fas fa-check"></i> Ödendi</span>';
+                    else if(durum === 'planlandi') aksiyon = '<span class="badge bg-info text-dark"><i class="fas fa-robot"></i> Planlandı</span>';
+                    else {
+                        // Planlama butonu
+                        aksiyon = `<button class="btn btn-sm btn-outline-primary fw-bold" onclick="faturaPlanla('${sabit.id}')">Planla</button>`;
+                    }
+
+                    html += `<div class="d-flex justify-content-between align-items-center border-bottom py-3"><div class="d-flex align-items-center"><div class="text-secondary me-3 fs-4"><i class="fas ${ikon}"></i></div><div><div class="fw-bold">${sabit.baslik}</div><div class="small text-muted">${sabit.degisken ? 'Değişken' : sabit.tutar + ' ₺'}</div></div></div><div class="text-end">${aksiyon}</div></div>`;
+                });
+                return html;
+            };
+            const evGiderleri = talimatlar.filter(x => x.evGideri === true);
+            const digerGiderler = talimatlar.filter(x => !x.evGideri);
+            listDiv.innerHTML += listeyiCiz(evGiderleri, '🏠 EVİN STANDART GİDERLERİ');
+            listDiv.innerHTML += listeyiCiz(digerGiderler, 'DİĞER TALİMATLAR');
+        }
+        modal.show();
+    }
+
+    // YENİ FONKSİYON: Fatura Planlama
+    function faturaPlanla(sabitId) {
+        bootstrap.Modal.getInstance(document.getElementById('faturaModal')).hide();
+        const sabit = sabitlerCache.find(x => x.id === sabitId);
+        if(!sabit) return;
+
+        ekleModalAc(); // Modalı aç
+        isPlanlamaModu = true; // Planlama modu aktif
+        
+        // Buton yazısını değiştir
+        document.getElementById('btnIslemKaydet').innerText = "PLANLA (OTOMATİK ÖDE)";
+        document.getElementById('btnIslemKaydet').classList.replace('btn-primary', 'btn-info');
+
+        setTimeout(() => {
+            document.getElementById('radioGider').checked = true;
+            formuDuzenle();
+            document.getElementById('kategori').value = sabit.kategori;
+            
+            let aciklamaMetni = sabit.baslik;
+            if(sabit.evGideri) {
+                const bugun = new Date();
+                bugun.setMonth(bugun.getMonth() - 1);
+                aciklamaMetni = `${sabit.baslik} (${bugun.toLocaleDateString('tr-TR', {month: 'long'})} Dönemi)`;
+            } else {
+                 aciklamaMetni = `${sabit.baslik} Faturası`;
+            }
+
+            document.getElementById('aciklama').value = aciklamaMetni;
+            document.getElementById('tutar').value = "";
+            document.getElementById('isSabitHidden').value = "true";
+            document.getElementById('tutar').focus();
+        }, 300);
+    }
+
+    function ekleModalAc() { 
+        isPlanlamaModu = false; // Normal ekleme modu
+        document.getElementById('btnIslemKaydet').innerText = "KAYDET";
+        document.getElementById('btnIslemKaydet').classList.replace('btn-info', 'btn-primary');
+        document.getElementById('isSabitHidden').value = "false";
+        new bootstrap.Modal(document.getElementById('eklemeModal')).show(); 
     }
     
+    function aramaModalAc() { new bootstrap.Modal(document.getElementById('aramaModal')).show(); }
+    function kartModalAc() { bootstrap.Modal.getInstance(document.getElementById('digerMenuModal'))?.hide(); new bootstrap.Modal(document.getElementById('kartModal')).show(); }
+    function sabitlerModalAc() { bootstrap.Modal.getInstance(document.getElementById('digerMenuModal'))?.hide(); new bootstrap.Modal(document.getElementById('sabitlerModal')).show(); }
+    function ayarlarModalAc() { bootstrap.Modal.getInstance(document.getElementById('digerMenuModal'))?.hide(); new bootstrap.Modal(document.getElementById('ayarlarModal')).show(); }
+    function digerMenuAc() { new bootstrap.Modal(document.getElementById('digerMenuModal')).show(); }
+    function limitModalAc() { bootstrap.Modal.getInstance(document.getElementById('analizModal')).hide(); new bootstrap.Modal(document.getElementById('limitModal')).show(); }
+    function analizAc() { const m=new bootstrap.Modal(document.getElementById('analizModal')); m.show(); setTimeout(grafikCiz,300); }
+    
+    function grafikCiz() {
+        const canvasContainer = document.getElementById('canvasContainer');
+        const limitBtn = document.getElementById('limitBtnContainer');
+        const dv = document.getElementById('analizListesi');
+        if(!canvasContainer || !limitBtn || !dv) return;
+        dv.innerHTML = "";
+        const g = hamVeriler.filter(x => x.tur === 'gider');
+        const tg = g.reduce((a, b) => a + b.tutar, 0);
+        if (tg === 0) { dv.innerHTML = "<div class='text-center p-3 text-muted'>Veri yok.</div>"; canvasContainer.style.display = 'none'; return; }
+        if (analizModu === 'kategori') {
+            canvasContainer.style.display = 'block'; limitBtn.style.display = 'flex';
+            let km = {}; g.forEach(i => { if (!km[i.kategori]) km[i.kategori] = 0; km[i.kategori] += i.tutar; });
+            const ks = Object.keys(km).sort((a, b) => km[b] - km[a]); const dt = ks.map(k => km[k]);
+            const ctx = document.getElementById('harcamaGrafigi').getContext('2d'); if (grafikInstance) grafikInstance.destroy();
+            const cl = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#E7E9ED', '#71B37C'];
+            grafikInstance = new Chart(ctx, { type: 'doughnut', data: { labels: ks, datasets: [{ data: dt, backgroundColor: cl, borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } } } } });
+            ks.forEach((k, i) => { const p = ((km[k] / tg) * 100).toFixed(1); const c = cl[i % cl.length]; const ic = kategoriIkonlari[k] || 'fa-circle'; let l = ""; if (limitlerCache[k]) { const lm = limitlerCache[k]; const lp = Math.min((km[k] / lm) * 100, 100); const lc = lp > 90 ? '#dc3545' : (lp > 70 ? '#ffc107' : '#198754'); l = `<div class="mt-1 small text-muted d-flex justify-content-between"><span>Limit: ${lm} ₺</span> <span>${(km[k] / lm * 100).toFixed(0)}%</span></div><div class="limit-bar-bg"><div class="limit-bar-fill" style="width: ${lp}%; background-color: ${lc}"></div></div>`; } else { l = `<div class="analiz-bar"><div class="analiz-fill" style="width: ${p}%; background-color: ${c}"></div></div>`; } dv.innerHTML += `<div class="analiz-item d-block"><div class="d-flex justify-content-between"><span class="fw-bold" style="color:${c}"><i class="fas ${ic} me-1"></i> ${k}</span><span>${km[k].toFixed(2)} ₺</span></div>${l}</div>`; });
+        } else {
+            canvasContainer.style.display = 'none'; limitBtn.style.display = 'none';
+            let om = { 'nakit': 0 }; kartlarCache.forEach(k => om[k.id] = 0);
+            g.forEach(i => { let yontem = i.odemeYontemi || 'nakit'; if (yontem !== 'nakit' && !kartlarCache.find(k => k.id === yontem)) yontem = 'nakit'; if (om[yontem] === undefined) om[yontem] = 0; om[yontem] += i.tutar; });
+            const kaynaklar = Object.keys(om).sort((a, b) => om[b] - om[a]);
+            kaynaklar.forEach(key => { const tutar = om[key]; if(tutar === 0) return; const p = ((tutar / tg) * 100).toFixed(1); let baslik = "Nakit / Banka Hesabı", ikon = "fa-wallet", renk = "#198754"; if (key !== 'nakit') { const kart = kartlarCache.find(k => k.id === key); if (kart) { baslik = kart.ad; ikon = kart.tip === 'banka' ? 'fa-university' : 'fa-credit-card'; renk = "#0d6efd"; } } dv.innerHTML += `<div class="analiz-item d-block py-3"><div class="d-flex justify-content-between mb-1"><span class="fw-bold text-dark"><i class="fas ${ikon} me-2" style="color:${renk}"></i> ${baslik}</span><span class="fw-bold">${tutar.toFixed(2)} ₺</span></div><div class="d-flex justify-content-between small text-muted mb-1"><span>Pay</span><span>%${p}</span></div><div class="progress" style="height: 6px;"><div class="progress-bar" style="width: ${p}%; background-color: ${renk};"></div></div></div>`; });
+        }
+    }
+
+    function bakiyeGosterGizle(ikon) { bakiyeGizli = !bakiyeGizli; const bakiyeEl = document.getElementById('aylikDurum'); if(bakiyeGizli) { bakiyeEl.innerText = "**** ₺"; ikon.classList.replace('fa-eye-slash', 'fa-eye'); } else { bakiyeEl.innerText = hesaplananBakiye.toFixed(2) + " ₺"; ikon.classList.replace('fa-eye', 'fa-eye-slash'); } }
+    function gelirAyariKontrol() { const k = localStorage.getItem('gelirGoster'); gelirGoster = (k === 'true'); document.getElementById('gelirGosterSwitch').checked = gelirGoster; document.getElementById('gelirKutusuRow').style.display = gelirGoster ? 'block' : 'none'; }
+    function gelirGorunumDegis() { gelirGoster = document.getElementById('gelirGosterSwitch').checked; localStorage.setItem('gelirGoster', gelirGoster); document.getElementById('gelirKutusuRow').style.display = gelirGoster ? 'block' : 'none'; }
+    function gelirModalAc() { const modal = new bootstrap.Modal(document.getElementById('gelirModal')); const listDiv = document.getElementById('gelirListesi'); const totalEl = document.getElementById('modalToplamGelir'); const gelirler = hamVeriler.filter(x => x.tur === 'gelir'); const total = gelirler.reduce((acc, curr) => acc + curr.tutar, 0); totalEl.innerText = total.toFixed(2) + " ₺"; listDiv.innerHTML = ""; if(gelirler.length === 0) listDiv.innerHTML = "<div class='text-center text-muted p-3'>Kayıt yok.</div>"; else { gelirler.forEach(item => { let date = "-"; if(item.tarih && item.tarih.toDate) date = item.tarih.toDate().toLocaleDateString('tr-TR', {day: 'numeric', month: 'long'}); const ikon = kategoriIkonlari[item.kategori] || 'fa-circle'; listDiv.innerHTML += `<div class="d-flex justify-content-between align-items-center border-bottom py-2"><div class="d-flex align-items-center"><div class="text-success me-3 fs-5"><i class="fas ${ikon}"></i></div><div><div class="fw-bold">${item.kategori}</div><div class="small text-muted">${item.aciklama || ''} - ${date}</div></div></div><div class="d-flex align-items-center gap-2"><div class="fw-bold text-success">+${item.tutar.toFixed(2)} ₺</div><button class="btn btn-sm text-danger" onclick="sil('${item.id}')"><i class="fas fa-trash"></i></button></div></div>`; }); } modal.show(); }
+    function filtreOlustur(mevcutVeriler) { const filtreDiv = document.getElementById('filtreContainer'); const tabVerileri = mevcutVeriler.filter(x => x.tur === aktifGorunum); const gosterilecekVeriler = aktifGorunum === 'gider' ? tabVerileri.filter(x => !x.otomatik) : tabVerileri; const kategoriler = [...new Set(gosterilecekVeriler.map(item => item.kategori))]; let html = `<button class="filtre-chip ${seciliFiltre === 'Tümü' ? 'active' : ''}" onclick="filtreUygula('Tümü')">Tümü</button>`; kategoriler.forEach(kat => { const ikon = kategoriIkonlari[kat] || 'fa-circle'; const active = seciliFiltre === kat ? 'active' : ''; html += `<button class="filtre-chip ${active}" onclick="filtreUygula('${kat}')"><i class="fas ${ikon}"></i> ${kat}</button>`; }); filtreDiv.innerHTML = html; }
+    function filtreUygula(kategori) { seciliFiltre = kategori; suankiSayfa = 1; listeyiYenile(); }
+    function sayfaDegistir(yon) { suankiSayfa += yon; listeyiYenile(); document.getElementById('hareketListesi').scrollIntoView({ behavior: 'smooth' }); }
+    function listeyiYenile() { 
+        const liste = document.getElementById('hareketListesi'); if(!liste) return; liste.innerHTML = ""; 
+        let filtrelenmis = hamVeriler.filter(x => x.tur === aktifGorunum); 
+        if (aktifGorunum === 'gider') filtrelenmis = filtrelenmis.filter(x => !x.otomatik); 
+        if (seciliFiltre !== 'Tümü') filtrelenmis = filtrelenmis.filter(d => d.kategori === seciliFiltre); 
+        if(filtrelenmis.length === 0) { liste.innerHTML = '<div class="text-center text-muted mt-4">Kayıt yok.</div>'; document.getElementById('paginationControls').style.display = 'none'; return; } 
+        const toplamSayfa = Math.ceil(filtrelenmis.length / sayfaBasiKayit); if(suankiSayfa < 1) suankiSayfa = 1; if(suankiSayfa > toplamSayfa) suankiSayfa = toplamSayfa; 
+        const baslangic = (suankiSayfa - 1) * sayfaBasiKayit; const gosterilecek = filtrelenmis.slice(baslangic, baslangic + sayfaBasiKayit); 
+        filtreOlustur(hamVeriler); 
+        gosterilecek.forEach(d => { 
+            let date = "-"; if(d.tarih && d.tarih.toDate) date = d.tarih.toDate().toLocaleDateString('tr-TR', {day: 'numeric', month: 'long'}); 
+            let badge = ""; if(d.tur === 'gider' && d.odemeYontemi && d.odemeYontemi !== 'nakit') { const k = kartlarCache.find(x => x.id === d.odemeYontemi); const kn = k ? k.ad : 'Kart'; badge = `<span class="badge-kaynak bg-kredi"><i class="fas fa-credit-card"></i> ${kn}</span>`; } else { badge = `<span class="badge-kaynak bg-nakit"><i class="fas fa-wallet"></i> Nakit/Banka</span>`; } 
+            const ikon = kategoriIkonlari[d.kategori] || 'fa-circle'; const renk = d.tur === 'gelir' ? 'text-success' : 'text-danger'; const isaret = d.tur === 'gelir' ? '+' : '-'; const borderClass = d.tur === 'gelir' ? 'border-gelir' : 'border-gider'; 
+            let sabitIkon = ""; if(d.sabitMi === true) sabitIkon = '<i class="fas fa-home text-warning ms-1 small" title="Sabit/Büyük Gider"></i>';
+            liste.innerHTML += `<div class="islem-item ${borderClass} d-flex justify-content-between align-items-center"><div class="d-flex align-items-center"><div class="kat-ikon-kutusu"><i class="fas ${ikon}"></i></div><div><div class="fw-bold mb-0">${d.kategori} ${sabitIkon}</div><div class="small opacity-75">${d.aciklama||''} <span class="ms-1 fw-bold text-primary" style="font-size:0.75rem;">${date}</span></div><div class="mt-1">${badge}</div></div></div><div class="text-end d-flex flex-column align-items-end"><div class="fw-bold ${renk} mb-1">${isaret}${d.tutar.toFixed(2)}</div><div class="d-flex align-items-center gap-3"><i class="fas fa-pen text-primary opacity-50 small" style="cursor:pointer" onclick="duzenleAc('${d.id}')"></i><i class="fas fa-trash text-muted opacity-50 small" style="cursor:pointer" onclick="sil('${d.id}')"></i></div></div></div>`; 
+        }); 
+        if (toplamSayfa > 1) { document.getElementById('paginationControls').style.display = 'flex'; document.getElementById('pageInfo').innerText = `Sayfa ${suankiSayfa} / ${toplamSayfa}`; document.getElementById('btnPrev').disabled = (suankiSayfa === 1); document.getElementById('btnNext').disabled = (suankiSayfa === toplamSayfa); } else { document.getElementById('paginationControls').style.display = 'none'; } 
+    }
+
+    async function kartBorclariniHesapla() { const now = new Date(); const cs = new Date(now.getFullYear(), now.getMonth(), 1); const ce = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59); const ns = new Date(now.getFullYear(), now.getMonth() + 1, 1); for (let k of kartlarCache) { if(k.tip !== 'kredi') continue; const sb = await db.collection("islemler").where("odemeYontemi","==",k.id).where("tarih",">=",cs).where("tarih","<=",ce).get(); let tb = 0; sb.forEach(d=>tb+=d.data().tutar); const sg = await db.collection("islemler").where("odemeYontemi","==",k.id).where("tarih",">=",ns).get(); let tg = 0; sg.forEach(d=>tg+=d.data().tutar); const el = document.getElementById(`borc-bilgi-${k.id}`); if(el) el.innerHTML=`<div class="mt-2 d-flex gap-2"><span class="badge bg-primary badge-borc">Bu Ay: ${tb.toFixed(0)}₺</span><span class="badge bg-warning text-dark badge-borc">Gelecek: ${tg.toFixed(0)}₺</span></div>`; } }
+    function temaKontrol() { const t = localStorage.getItem('tema'); if(t === 'dark') { document.body.classList.add('dark-mode'); document.getElementById('temaIkonu').classList.replace('fa-moon', 'fa-sun'); } }
+    function temaDegistir() { document.body.classList.toggle('dark-mode'); const isDark = document.body.classList.contains('dark-mode'); document.getElementById('temaIkonu').classList.replace(isDark ? 'fa-moon' : 'fa-sun', isDark ? 'fa-sun' : 'fa-moon'); localStorage.setItem('tema', isDark ? 'dark' : 'light'); }
+    async function aramaYap() { const k = document.getElementById('aramaInput').value.toLowerCase(); const div = document.getElementById('aramaSonuclari'); if(k.length < 2) return; div.innerHTML = "Aranıyor..."; const snap = await db.collection("islemler").orderBy("tarih", "desc").limit(500).get(); let html = ""; snap.forEach(doc => { const d = doc.data(); if((d.aciklama+" "+d.kategori).toLowerCase().includes(k)) { const c = d.tur==='gelir'?'text-success':'text-danger'; html += `<div class="d-flex justify-content-between border-bottom py-2"><div><div class="fw-bold">${d.kategori}</div><div class="small text-muted">${d.aciklama} - ${d.tarih.toDate().toLocaleDateString('tr-TR', {day: 'numeric', month: 'long'})}</div></div><div class="d-flex gap-2 align-items-center"><div class="${c} fw-bold">${d.tur==='gelir'?'+':'-'}${d.tutar} ₺</div></div></div>`; } }); div.innerHTML = html || "Bulunamadı."; }
+    function limitleriGetir() { db.collection("kategoriLimitleri").onSnapshot(snap => { limitlerCache={}; const ul=document.getElementById('mevcutLimitler'); ul.innerHTML=""; snap.forEach(doc=>{ const d=doc.data(); limitlerCache[d.kategori]=d.tutar; ul.innerHTML+=`<li class="list-group-item d-flex justify-content-between"><span>${d.kategori}</span> <span>${d.tutar} ₺ <i class="fas fa-trash text-danger ms-2" onclick="limitSil('${doc.id}')" style="cursor:pointer"></i></span></li>`; }); }); const s=document.getElementById('limitKategori'); s.innerHTML=""; giderKats.forEach(k=>s.innerHTML+=`<option value="${k}">${k}</option>`); }
+    document.getElementById('limitForm').addEventListener('submit', (e) => { e.preventDefault(); const kat=document.getElementById('limitKategori').value; const tut=parseFloat(document.getElementById('limitTutar').value); db.collection("kategoriLimitleri").doc(kat).set({ kategori: kat, tutar: tut }).then(()=>{ document.getElementById('limitForm').reset(); bootstrap.Modal.getInstance(document.getElementById('limitModal')).hide(); analizAc(); }); });
+    function limitSil(id) { db.collection("kategoriLimitleri").doc(id).delete(); }
+    
+    function sabitFormuDuzenle() { const tur=document.querySelector('input[name="sabitTur"]:checked').value; const s=document.getElementById('sabitKategori'); s.innerHTML=""; (tur==='gider'?giderKats:gelirKats).forEach(k=>s.innerHTML+=`<option value="${k}">${k}</option>`); }
+    document.getElementById('sabitEkleForm').addEventListener('submit', (e)=>{ e.preventDefault(); const t=document.querySelector('input[name="sabitTur"]:checked').value; const isDegisken = document.getElementById('degiskenFatura').checked; const isEvGideri = document.getElementById('evGideriCheck').checked; const tutarVal = isDegisken ? 0 : parseFloat(document.getElementById('sabitTutar').value); db.collection("sabitler").add({ baslik:document.getElementById('sabitBaslik').value, tutar: tutarVal, gun:parseInt(document.getElementById('sabitGun').value), kategori:document.getElementById('sabitKategori').value, tur:t, degisken: isDegisken, evGideri: isEvGideri, sonIslemTarihi:null }).then(()=>{ document.getElementById('sabitEkleForm').reset(); degiskenKontrol(); alert("Talimat Eklendi!"); }); });
+    function sabitleriDinle() { db.collection("sabitler").onSnapshot(s => { sabitlerCache = []; const div = document.getElementById('sabitListesi'); div.innerHTML = ""; s.forEach(doc => { const da = doc.data(); da.id = doc.id; sabitlerCache.push(da); const c = da.tur === 'gelir' ? 'text-success' : 'text-danger'; const tutarBilgisi = da.degisken ? '<span class="badge bg-secondary">Değişken</span>' : `(${da.tutar} ₺)`; let evIkonu = da.evGideri ? '<i class="fas fa-home text-warning ms-1" title="Ev Gideri"></i>' : ''; div.innerHTML += `<div class="list-group-item d-flex justify-content-between px-0 bg-transparent"><div><strong>${da.baslik} ${evIkonu}</strong> <span class="${c}">${tutarBilgisi}</span><div class="small text-muted">Her ayın ${da.gun}. günü</div></div><button class="btn btn-sm text-danger" onclick="sabitSil('${doc.id}')"><i class="fas fa-trash"></i></button></div>`; }); otomatikKontrol(); }); }
     function sabitSil(id) { if(confirm("Silinsin mi?")) db.collection("sabitler").doc(id).delete(); }
     function kartTipiDegis() { const t=document.querySelector('input[name="kartTipi"]:checked').value; const d=document.getElementById('kesimInputDiv'); if(t==='banka') d.style.visibility='hidden'; else d.style.visibility='visible'; }
     document.getElementById('kartEkleForm').addEventListener('submit', (e)=>{ e.preventDefault(); const t=document.querySelector('input[name="kartTipi"]:checked').value; db.collection("kartlar").add({ ad:document.getElementById('kartAdi').value, tip:t, kesimGunu:t==='kredi'?parseInt(document.getElementById('kesimGunu').value):0 }).then(()=>{ document.getElementById('kartEkleForm').reset(); document.getElementById('tipKredi').checked=true; kartTipiDegis(); }); });
-    
-    function kartlariGetir() { 
-        db.collection("kartlar").onSnapshot(s=>{ 
-            kartlarCache=[]; 
-            const l=document.getElementById('kartListesi'); 
-            const sel=document.getElementById('odemeYontemi'); 
-            
-            l.innerHTML=""; 
-            const optionsHTML = '<option value="nakit">💵 Nakit / Banka Hesabı</option>';
-            sel.innerHTML= optionsHTML;
-            
-            s.forEach(doc=>{ 
-                const k=doc.data(); 
-                k.id=doc.id; 
-                kartlarCache.push(k); 
-                const i=k.tip==='banka'?'fa-university':'fa-credit-card'; 
-                
-                let kesimBilgi = k.tip === 'kredi' ? `<small class="text-muted ms-2">(Kesim: ${k.kesimGunu})</small>` : '';
-
-                l.innerHTML+=`<div class="list-group-item px-0"><div class="d-flex justify-content-between align-items-center"><span><i class="fas ${i} text-primary me-2"></i> ${k.ad} ${kesimBilgi}</span><button class="btn btn-sm text-danger" onclick="kartSil('${k.id}')"><i class="fas fa-trash"></i></button></div><div id="borc-bilgi-${k.id}"></div></div>`; 
-                
-                let o=document.createElement('option'); 
-                o.value=k.id; 
-                o.text=`${k.tip==='banka'?'🏧':'💳'} ${k.ad}`; 
-                sel.appendChild(o); 
-            }); 
-            asistaniCalistir(); 
-            kartBorclariniHesapla(); 
-        }); 
-    }
+    function kartlariGetir() { db.collection("kartlar").onSnapshot(s=>{ kartlarCache=[]; const l=document.getElementById('kartListesi'); const sel=document.getElementById('odemeYontemi'); l.innerHTML=""; sel.innerHTML= '<option value="nakit">💵 Nakit / Banka Hesabı</option>'; s.forEach(doc=>{ const k=doc.data(); k.id=doc.id; kartlarCache.push(k); const i=k.tip==='banka'?'fa-university':'fa-credit-card'; let kesimBilgi = k.tip === 'kredi' ? `<small class="text-muted ms-2">(Kesim: ${k.kesimGunu})</small>` : ''; l.innerHTML+=`<div class="list-group-item px-0"><div class="d-flex justify-content-between align-items-center"><span><i class="fas ${i} text-primary me-2"></i> ${k.ad} ${kesimBilgi}</span><button class="btn btn-sm text-danger" onclick="kartSil('${k.id}')"><i class="fas fa-trash"></i></button></div><div id="borc-bilgi-${k.id}"></div></div>`; let o=document.createElement('option'); o.value=k.id; o.text=`${k.tip==='banka'?'🏧':'💳'} ${k.ad}`; sel.appendChild(o); }); asistaniCalistir(); kartBorclariniHesapla(); }); }
 
     function tarihAyarla(n) { const d=new Date(); d.setDate(d.getDate()+n); document.getElementById('tarih').valueAsDate=d; taksitKontrol(); }
     document.getElementById('tarih').addEventListener('change', taksitKontrol);
     
+    // GÜNCELLENEN İŞLEM KAYDETME (PLANLAMA DESTEĞİ)
     document.getElementById('islemFormu').addEventListener('submit', async (e)=>{ 
         e.preventDefault(); 
         const tr=document.querySelector('input[name="tur"]:checked').value; 
@@ -1288,161 +910,74 @@
         const dt=document.getElementById('tarih').value; 
         const tk=parseInt(document.getElementById('taksitSayisi').value); 
         const isTaksit = document.getElementById('taksitSwitch').checked; 
-        
         const isSabit = document.getElementById('isSabitHidden').value === "true";
 
-        let d=new Date(dt); 
-        let m=d.getMonth(); 
-        let y=d.getFullYear(); 
-        
-        if(tr==='gider'&&od!=='nakit'){ 
-            const k=kartlarCache.find(x=>x.id===od); 
-            if(k&&k.tip==='kredi'&&k.kesimGunu>0 && d.getDate()>k.kesimGunu) m++; 
-        } 
-        
-        const mt=parseFloat((tt/tk).toFixed(2)); 
-        const b=db.batch(); 
-        
+        // EĞER PLANLAMA MODUYSA
+        if (isPlanlamaModu) {
+            try {
+                await db.collection("bekleyen_islemler").add({
+                    tur: tr,
+                    tutar: tt,
+                    kategori: kt,
+                    aciklama: ds,
+                    odemeYontemi: od,
+                    planlananTarih: firebase.firestore.Timestamp.fromDate(new Date(dt)),
+                    olusturulma: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                bootstrap.Modal.getInstance(document.getElementById('eklemeModal')).hide();
+                document.getElementById('islemFormu').reset();
+                document.getElementById('tarih').valueAsDate=new Date(); 
+                toastGoster("Ödeme planlandı! Günü gelince ödenecek.");
+            } catch (err) { alert("Planlama hatası: " + err); }
+            return;
+        }
+
+        // NORMAL KAYIT
+        let d=new Date(dt); let m=d.getMonth(); let y=d.getFullYear(); 
+        if(tr==='gider'&&od!=='nakit'){ const k=kartlarCache.find(x=>x.id===od); if(k&&k.tip==='kredi'&&k.kesimGunu>0 && d.getDate()>k.kesimGunu) m++; } 
+        const mt=parseFloat((tt/tk).toFixed(2)); const b=db.batch(); 
         for(let i=0;i<tk;i++){ 
             const r=db.collection("islemler").doc(); 
-            let td=new Date(y,m+i,15); 
-            if(tk===1&&m===new Date(dt).getMonth()) td=new Date(dt); 
-            
+            let td=new Date(y,m+i,15); if(tk===1&&m===new Date(dt).getMonth()) td=new Date(dt); 
             const yeniAciklama = (isTaksit) ? `${ds} (${i+1}/${tk})` : ds;
-
-            b.set(r, { 
-                tur:tr, 
-                tutar:mt, 
-                kategori:kt, 
-                aciklama: yeniAciklama, 
-                odemeYontemi:od, 
-                tarih:firebase.firestore.Timestamp.fromDate(td), 
-                sabitMi: isSabit, 
-                olusturulma:firebase.firestore.FieldValue.serverTimestamp() 
-            }); 
+            b.set(r, { tur:tr, tutar:mt, kategori:kt, aciklama: yeniAciklama, odemeYontemi:od, tarih:firebase.firestore.Timestamp.fromDate(td), sabitMi: isSabit, olusturulma:firebase.firestore.FieldValue.serverTimestamp() }); 
         } 
         await b.commit(); 
         bootstrap.Modal.getInstance(document.getElementById('eklemeModal')).hide(); 
         document.getElementById('islemFormu').reset(); 
         document.getElementById('tarih').valueAsDate=new Date(); 
         formuDuzenle(); 
-        // Ana sayfadaki uyarıları yenile (ödendiği için kalksın)
         otomatikKontrol();
     });
 
     function verileriDinle() { 
         if (window.listenerUnsubscribe) window.listenerUnsubscribe(); 
-
         const start = new Date(aktifTarih.getFullYear(), aktifTarih.getMonth(), 1);
         const end = new Date(aktifTarih.getFullYear(), aktifTarih.getMonth() + 1, 0, 23, 59, 59);
-
-        window.listenerUnsubscribe = db.collection("islemler")
-            .where("tarih", ">=", start)
-            .where("tarih", "<=", end)
-            .orderBy("tarih", "desc")
-            .onSnapshot(s => { 
-                hamVeriler=[]; 
-                let toplamGelir=0; 
-                let toplamGider=0;
-                let gunlukHarcama = 0; 
-                let sabitOdemeler = 0; 
-
-                s.forEach(d=>{ 
-                    const dt=d.data(); 
-                    dt.id=d.id; 
-                    hamVeriler.push(dt); 
-
-                    if(dt.tur==='gelir') {
-                        toplamGelir += dt.tutar;
-                    } else {
-                        toplamGider += dt.tutar;
-                        if(dt.sabitMi === true || dt.otomatik === true) { 
-                            sabitOdemeler += dt.tutar;
-                        } else {
-                            gunlukHarcama += dt.tutar;
-                        }
-                    }
-                }); 
-                
+        window.listenerUnsubscribe = db.collection("islemler").where("tarih", ">=", start).where("tarih", "<=", end).orderBy("tarih", "desc").onSnapshot(s => { 
+                hamVeriler=[]; let toplamGelir=0; let toplamGider=0; let gunlukHarcama = 0; let sabitOdemeler = 0; 
+                s.forEach(d=>{ const dt=d.data(); dt.id=d.id; hamVeriler.push(dt); if(dt.tur==='gelir') { toplamGelir += dt.tutar; } else { toplamGider += dt.tutar; if(dt.sabitMi === true || dt.otomatik === true) { sabitOdemeler += dt.tutar; } else { gunlukHarcama += dt.tutar; } } }); 
                 hesaplananBakiye = toplamGelir - toplamGider; 
-                
-                const elDurum = document.getElementById('aylikDurum');
-                if(elDurum) elDurum.innerText = bakiyeGizli ? "**** ₺" : hesaplananBakiye.toFixed(2) + " ₺"; 
-                
-                const elGelir = document.getElementById('aylikGelir');
-                if(elGelir) elGelir.innerText = toplamGelir.toFixed(2) + " ₺";
-                
-                const elGunluk = document.getElementById('gunlukGider');
-                if(elGunluk) elGunluk.innerText = gunlukHarcama.toFixed(2) + " ₺";
-                
-                const elSabit = document.getElementById('sabitGiderTotal');
-                if(elSabit) elSabit.innerText = sabitOdemeler.toFixed(2) + " ₺";
-
+                document.getElementById('aylikDurum').innerText = bakiyeGizli ? "**** ₺" : hesaplananBakiye.toFixed(2) + " ₺"; 
+                document.getElementById('aylikGelir').innerText = toplamGelir.toFixed(2) + " ₺";
+                document.getElementById('gunlukGider').innerText = gunlukHarcama.toFixed(2) + " ₺";
+                document.getElementById('sabitGiderTotal').innerText = sabitOdemeler.toFixed(2) + " ₺";
                 gorunumDegis(aktifGorunum);
                 if(document.getElementById('gelirModal').classList.contains('show')) gelirModalAc();
-                
-                // Veriler değişince panoyu kontrol et (ödendi mi diye)
                 otomatikKontrol();
-            }, (error) => {
-                console.error("Veri çekme hatası: ", error);
-                const liste = document.getElementById('hareketListesi');
-                if(liste) liste.innerHTML = "<div class='text-danger text-center p-3'>Veri hatası: " + error.message + "</div>";
-            }); 
+            }, (error) => { console.error("Veri hatası: ", error); }); 
     }
 
     function toastGoster(m) { const t=document.getElementById('otoToastContainer'); t.innerHTML=`<div class="alert alert-success shadow fw-bold border-0 d-flex align-items-center"><i class="fas fa-check-circle fa-lg me-2"></i> ${m}</div>`; setTimeout(()=>t.innerHTML="",4000); }
     function sil(id) { if(confirm("Silmek istiyor musun?")) db.collection("islemler").doc(id).delete(); }
     function ayDegistir(y) { aktifTarih.setMonth(aktifTarih.getMonth()+y); ayBasliginiGuncelle(); verileriDinle(); }
     function ayBasliginiGuncelle() { const a=["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"]; document.getElementById('seciliAyBaslik').innerText=`${a[aktifTarih.getMonth()]} ${aktifTarih.getFullYear()}`; }
-    
     function asistaniCalistir() { 
-        const asistanDiv = document.getElementById('akilliAsistan');
-        if(!asistanDiv) return;
-        
-        if(kartlarCache.length===0) { 
-            asistanDiv.style.display='none'; 
-            return; 
-        } 
-        
-        const bugun = new Date(); 
-        const gun = bugun.getDate(); 
-        let enIyiKart = null; 
-        let enUzunVade = -1; 
-
-        kartlarCache.forEach(k => { 
-            if(k.tip !== 'kredi') return; 
-            
-            let vadeGun;
-            if (gun > k.kesimGunu) {
-                vadeGun = 45 - (gun - k.kesimGunu);
-            } else {
-                vadeGun = 15 + (k.kesimGunu - gun);
-            }
-
-            if(vadeGun > enUzunVade){ 
-                enUzunVade = vadeGun; 
-                enIyiKart = k; 
-            } 
-        }); 
-
-        if(enIyiKart) { 
-            let mesaj = "";
-            if(enUzunVade > 25) {
-                mesaj = `Harcamanı <b>${enIyiKart.ad}</b> ile yap, ödemesi diğer aya kalsın!`;
-            } else {
-                mesaj = `Şu an en avantajlı kartın <b>${enIyiKart.ad}</b> (Kesim: ${enIyiKart.kesimGunu}).`;
-            }
-
-            asistanDiv.innerHTML = `
-                <div class="p-3 w-100">
-                    <div class="fw-bold mb-1"><i class="fas fa-lightbulb me-2"></i>Akıllı Asistan</div>
-                    <div class="small">${mesaj}</div>
-                </div>
-            `; 
-            asistanDiv.style.display = 'flex'; 
-        } else {
-            asistanDiv.style.display = 'none'; 
-        }
+        const asistanDiv = document.getElementById('akilliAsistan'); if(!asistanDiv) return;
+        if(kartlarCache.length===0) { asistanDiv.style.display='none'; return; } 
+        const bugun = new Date(); const gun = bugun.getDate(); let enIyiKart = null; let enUzunVade = -1; 
+        kartlarCache.forEach(k => { if(k.tip !== 'kredi') return; let vadeGun; if (gun > k.kesimGunu) { vadeGun = 45 - (gun - k.kesimGunu); } else { vadeGun = 15 + (k.kesimGunu - gun); } if(vadeGun > enUzunVade){ enUzunVade = vadeGun; enIyiKart = k; } }); 
+        if(enIyiKart) { let mesaj = ""; if(enUzunVade > 25) { mesaj = `Harcamanı <b>${enIyiKart.ad}</b> ile yap, ödemesi diğer aya kalsın!`; } else { mesaj = `Şu an en avantajlı kartın <b>${enIyiKart.ad}</b> (Kesim: ${enIyiKart.kesimGunu}).`; } asistanDiv.innerHTML = `<div class="p-3 w-100"><div class="fw-bold mb-1"><i class="fas fa-lightbulb me-2"></i>Akıllı Asistan</div><div class="small">${mesaj}</div></div>`; asistanDiv.style.display = 'flex'; } else { asistanDiv.style.display = 'none'; }
     }
 </script>
 </body>
