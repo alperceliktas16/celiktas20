@@ -873,10 +873,32 @@
         filtreOlustur(hamVeriler); 
         gosterilecek.forEach(d => { 
             let date = "-"; if(d.tarih && d.tarih.toDate) date = d.tarih.toDate().toLocaleDateString('tr-TR', {day: 'numeric', month: 'long'}); 
-            let badge = ""; if(d.tur === 'gider' && d.odemeYontemi && d.odemeYontemi !== 'nakit') { const k = kartlarCache.find(x => x.id === d.odemeYontemi); const kn = k ? k.ad : 'Kart'; badge = `<span class="badge-kaynak bg-kredi"><i class="fas fa-credit-card"></i> ${kn}</span>`; } else { badge = `<span class="badge-kaynak bg-nakit"><i class="fas fa-wallet"></i> Nakit/Banka</span>`; } 
+            
+            let badge = "";
+            let ekstreUyarisi = ""; 
+
+            if(d.tur === 'gider' && d.odemeYontemi && d.odemeYontemi !== 'nakit') { 
+                const k = kartlarCache.find(x => x.id === d.odemeYontemi); 
+                const kn = k ? k.ad : 'Kart'; 
+                badge = `<span class="badge-kaynak bg-kredi"><i class="fas fa-credit-card"></i> ${kn}</span>`; 
+                
+                // KESİM TARİHİ KONTROLÜ VE UYARI EKLEME
+                if (k && k.tip === 'kredi' && d.tarih) {
+                    const islemTarihi = d.tarih.toDate();
+                    const islemGunu = islemTarihi.getDate();
+                    // Harcama günü kesim gününden büyükse
+                    if (k.kesimGunu > 0 && islemGunu > k.kesimGunu) {
+                        ekstreUyarisi = `<span class="badge bg-warning text-dark border ms-1" style="font-size:0.7rem;"><i class="fas fa-clock"></i> Sonraki Ekstre</span>`;
+                    }
+                }
+
+            } else { 
+                badge = `<span class="badge-kaynak bg-nakit"><i class="fas fa-wallet"></i> Nakit/Banka</span>`; 
+            }
+            
             const ikon = kategoriIkonlari[d.kategori] || 'fa-circle'; const renk = d.tur === 'gelir' ? 'text-success' : 'text-danger'; const isaret = d.tur === 'gelir' ? '+' : '-'; const borderClass = d.tur === 'gelir' ? 'border-gelir' : 'border-gider'; 
             let sabitIkon = ""; if(d.sabitMi === true) sabitIkon = '<i class="fas fa-home text-warning ms-1 small" title="Sabit/Büyük Gider"></i>';
-            liste.innerHTML += `<div class="islem-item ${borderClass} d-flex justify-content-between align-items-center"><div class="d-flex align-items-center"><div class="kat-ikon-kutusu"><i class="fas ${ikon}"></i></div><div><div class="fw-bold mb-0">${d.kategori} ${sabitIkon}</div><div class="small opacity-75">${d.aciklama||''} <span class="ms-1 fw-bold text-primary" style="font-size:0.75rem;">${date}</span></div><div class="mt-1">${badge}</div></div></div><div class="text-end d-flex flex-column align-items-end"><div class="fw-bold ${renk} mb-1">${isaret}${d.tutar.toFixed(2)}</div><div class="d-flex align-items-center gap-3"><i class="fas fa-pen text-primary opacity-50 small" style="cursor:pointer" onclick="duzenleAc('${d.id}')"></i><i class="fas fa-trash text-muted opacity-50 small" style="cursor:pointer" onclick="sil('${d.id}')"></i></div></div></div>`; 
+            liste.innerHTML += `<div class="islem-item ${borderClass} d-flex justify-content-between align-items-center"><div class="d-flex align-items-center"><div class="kat-ikon-kutusu"><i class="fas ${ikon}"></i></div><div><div class="fw-bold mb-0">${d.kategori} ${sabitIkon}</div><div class="small opacity-75">${d.aciklama||''} <span class="ms-1 fw-bold text-primary" style="font-size:0.75rem;">${date}</span></div><div class="mt-1">${badge} ${ekstreUyarisi}</div></div></div><div class="text-end d-flex flex-column align-items-end"><div class="fw-bold ${renk} mb-1">${isaret}${d.tutar.toFixed(2)}</div><div class="d-flex align-items-center gap-3"><i class="fas fa-pen text-primary opacity-50 small" style="cursor:pointer" onclick="duzenleAc('${d.id}')"></i><i class="fas fa-trash text-muted opacity-50 small" style="cursor:pointer" onclick="sil('${d.id}')"></i></div></div></div>`; 
         }); 
         if (toplamSayfa > 1) { document.getElementById('paginationControls').style.display = 'flex'; document.getElementById('pageInfo').innerText = `Sayfa ${suankiSayfa} / ${toplamSayfa}`; document.getElementById('btnPrev').disabled = (suankiSayfa === 1); document.getElementById('btnNext').disabled = (suankiSayfa === toplamSayfa); } else { document.getElementById('paginationControls').style.display = 'none'; } 
     }
@@ -935,7 +957,10 @@
 
         // NORMAL KAYIT
         let d=new Date(dt); let m=d.getMonth(); let y=d.getFullYear(); 
-        if(tr==='gider'&&od!=='nakit'){ const k=kartlarCache.find(x=>x.id===od); if(k&&k.tip==='kredi'&&k.kesimGunu>0 && d.getDate()>k.kesimGunu) m++; } 
+        
+        // --- DEĞİŞİKLİK: Aşağıdaki satır iptal edildi (Tarih ötelemesi kaldırıldı) ---
+        // if(tr==='gider'&&od!=='nakit'){ const k=kartlarCache.find(x=>x.id===od); if(k&&k.tip==='kredi'&&k.kesimGunu>0 && d.getDate()>k.kesimGunu) m++; } 
+        
         const mt=parseFloat((tt/tk).toFixed(2)); const b=db.batch(); 
         for(let i=0;i<tk;i++){ 
             const r=db.collection("islemler").doc(); 
@@ -983,4 +1008,3 @@
 </script>
 </body>
 </html>
-
