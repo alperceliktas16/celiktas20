@@ -779,38 +779,53 @@
         modal.show();
     }
 
-    // YENİ FONKSİYON: Fatura Planlama
+    // DÜZELTİLEN FONKSİYON: Fatura Planlama
     function faturaPlanla(sabitId) {
-        bootstrap.Modal.getInstance(document.getElementById('faturaModal')).hide();
+        // 1. Önce veriyi bulalım
         const sabit = sabitlerCache.find(x => x.id === sabitId);
         if(!sabit) return;
 
-        ekleModalAc(); // Modalı aç
-        isPlanlamaModu = true; // Planlama modu aktif
+        // 2. Modalı açalım (Standart açılış)
+        bootstrap.Modal.getInstance(document.getElementById('faturaModal')).hide();
+        ekleModalAc(); 
         
-        // Buton yazısını değiştir
-        document.getElementById('btnIslemKaydet').innerText = "PLANLA (OTOMATİK ÖDE)";
-        document.getElementById('btnIslemKaydet').classList.replace('btn-primary', 'btn-info');
+        // 3. Planlama Modunu Aktif Edelim
+        isPlanlamaModu = true; 
+        
+        // Buton tipini değiştirelim
+        const btn = document.getElementById('btnIslemKaydet');
+        btn.innerText = "PLANLA (OTOMATİK ÖDE)";
+        btn.classList.remove('btn-primary');
+        btn.classList.add('btn-info');
 
-        setTimeout(() => {
-            document.getElementById('radioGider').checked = true;
-            formuDuzenle();
-            document.getElementById('kategori').value = sabit.kategori;
-            
-            let aciklamaMetni = sabit.baslik;
-            if(sabit.evGideri) {
-                const bugun = new Date();
-                bugun.setMonth(bugun.getMonth() - 1);
-                aciklamaMetni = `${sabit.baslik} (${bugun.toLocaleDateString('tr-TR', {month: 'long'})} Dönemi)`;
-            } else {
-                 aciklamaMetni = `${sabit.baslik} Faturası`;
-            }
+        // 4. Verileri ANINDA dolduralım (Gecikme/setTimeout kaldırıldı)
+        document.getElementById('radioGider').checked = true;
+        formuDuzenle(); // Kategorileri yükle
+        
+        // Kategoriyi seç
+        document.getElementById('kategori').value = sabit.kategori;
+        
+        // Açıklama metnini hazırla
+        let aciklamaMetni = sabit.baslik;
+        if(sabit.evGideri) {
+            const bugun = new Date();
+            // Ev gideri ise "Bir önceki ayın ismini" parantez içine ekle (Örn: Ocak Dönemi)
+            bugun.setMonth(bugun.getMonth() - 1); 
+            const donemAdi = bugun.toLocaleDateString('tr-TR', {month: 'long'});
+            aciklamaMetni = `${sabit.baslik} (${donemAdi} Dönemi)`;
+        } else {
+             aciklamaMetni = `${sabit.baslik} Faturası`;
+        }
 
-            document.getElementById('aciklama').value = aciklamaMetni;
-            document.getElementById('tutar').value = "";
-            document.getElementById('isSabitHidden').value = "true";
-            document.getElementById('tutar').focus();
-        }, 300);
+        // Değeri kutuya yaz
+        document.getElementById('aciklama').value = aciklamaMetni;
+        
+        // Tutar kutusunu boşalt ve imleci oraya odakla
+        document.getElementById('tutar').value = "";
+        document.getElementById('isSabitHidden').value = "true";
+        
+        // Kullanıcı direkt tutar yazmaya başlasın
+        setTimeout(() => document.getElementById('tutar').focus(), 100);
     }
 
     function ekleModalAc() { 
@@ -928,7 +943,7 @@
         const tr=document.querySelector('input[name="tur"]:checked').value; 
         const tt=parseFloat(document.getElementById('tutar').value); 
         const kt=document.getElementById('kategori').value; 
-        const ds=document.getElementById('aciklama').value; 
+        const ds=document.getElementById('aciklama').value || "Planlı Ödeme"; // Boş gelirse diye önlem
         const od=document.getElementById('odemeYontemi').value; 
         const dt=document.getElementById('tarih').value; 
         const tk=parseInt(document.getElementById('taksitSayisi').value); 
